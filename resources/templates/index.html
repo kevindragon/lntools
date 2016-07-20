@@ -6,14 +6,12 @@
     <title>Welcome to tools</title>
     <!-- styles -->
     {% style "/assets/font-awesome/css/font-awesome.min.css" %}
-    {% style "/css/screen.css" %}
+    {% style "/css/style.css" %}
   </head>
   <body>
-    <div class="container">
-      {% block content %}
-      {% endblock %}
-    </div>
-    {% block page-scripts %}
-    {% endblock %}
+
+    <div id="app"></div>
+    {% script "/js/app.js" %}
+
   </body>
 </html>

@@ -24,7 +24,9 @@
                  [org.webjars/webjars-locator-jboss-vfs "0.1.0"]
                  [luminus-immutant "0.2.2"]
                  [org.clojure/clojurescript "1.9.89"]
-                 [org.omcljs/om "1.0.0-alpha40"]]
+                 [org.omcljs/om "1.0.0-alpha40"]
+                 [secretary "1.2.3"]
+                 #_[cljs-ajax "0.5.8"]]
 
   :min-lein-version "2.0.0"
 
@@ -38,7 +40,8 @@
             [lein-immutant "2.1.0"]
             [cider/cider-nrepl "0.12.0"]
             [lein-cljsbuild "1.1.3"]
-            [lein-figwheel "0.5.4-7"]]
+            [lein-figwheel "0.5.4-7"]
+            [lein-sassk "1.0.7"]]
 
   :cljsbuild
   {:builds
@@ -61,6 +64,12 @@
       :externs       ["react/externs/react.js"]
       :optimizations :advanced
       :pretty-print  false}}}}
+
+  :figwheel {:css-dirs ["resources/public/css"]}
+
+  :sass {:src    "src/sass/"
+         :dst    "resources/public/css/"
+         :syntax :scss}
 
   :profiles
   {:uberjar {:omit-source true
