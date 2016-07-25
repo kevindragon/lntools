@@ -3,3 +3,6 @@
 *.iml
 target
 .nrepl-port
+.lein-repl-history
+node_modules
+*.db
