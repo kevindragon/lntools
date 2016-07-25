@@ -7,21 +7,12 @@ var DIST_DIR = path.resolve(__dirname, 'resources/public/js');
 var config = {
   context: path.join(__dirname, "/"),
   entry: [
-    'webpack-dev-server/client?http://0.0.0.0:8080',
-    'webpack/hot/only-dev-server',
     SRC_DIR + '/app.jsx'
   ],
   output: {
     publicPath: "/js/",
     path: DIST_DIR,
     filename: 'app.js'
-  },
-  devtool: 'source-map',
-  devServer: {
-    contentBase: DIST_DIR,
-    inline: true,
-    hot: true,
-    port: 8080
   },
   module: {
     loaders: [
@@ -47,7 +38,16 @@ var config = {
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: true
+      }
+    })
   ]
 };
 

@@ -1,6 +1,10 @@
 import React from 'react';
 import $ from 'jquery';
 
+import Article from './hyperlink/Article.jsx';
+import Parallel from './hyperlink/Parallel.jsx';
+import OprLoadStatus from './hyperlink/OprLoadStatus.jsx';
+
 export default class Hyperlink extends React.Component {
   constructor() {
     super();
@@ -40,61 +44,19 @@ export default class Hyperlink extends React.Component {
 
     return <div class="hyperlink">
       <h2>Hyperlink Status</h2>
-      <h3>lnc.article</h3>
-      <table class="table">
-        <thead>
-        <tr>
-          <th>provider id</th>
-          <th>status</th>
-          <th>count</th>
-        </tr>
-        </thead>
-        <tbody>
-        {article.map(
-          (row, index) => <tr key={index}>
-            <td>{row.provider_id}</td>
-            <td>{row.status}</td>
-            <td>{row.cnt}</td>
-          </tr>
-        )}
-        </tbody>
-      </table>
-      <hr/>
-      <h3>lnc.parallel</h3>
-      <table class="table">
-        <thead>
-        <tr>
-          <th>count</th>
-        </tr>
-        </thead>
-        <tbody>
-        {parallel.map(
-          (row, index) => <tr key={index}>
-            <td>{row.cnt}</td>
-          </tr>
-        )}
-        </tbody>
-      </table>
-      <hr/>
-      <h3>stg.opr_load_status</h3>
-      <table class="table">
-        <thead>
-        <tr>
-          <th>provider id</th>
-          <th>status</th>
-          <th>count</th>
-        </tr>
-        </thead>
-        <tbody>
-        {oprLoadStatus.map(
-          (row, index) => <tr key={index}>
-            <td>{row.provider_id}</td>
-            <td>{row.status}</td>
-            <td>{row.cnt}</td>
-          </tr>
-        )}
-        </tbody>
-      </table>
+      <div class="status-list">
+        <div class="column">
+          <Article article={article} />
+        </div>
+
+        <div class="column">
+          <Parallel parallel={parallel} />
+        </div>
+
+        <div class="column">
+          <OprLoadStatus oprLoadStatus={oprLoadStatus} />
+        </div>
+      </div>
     </div>;
   }
 }

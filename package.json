@@ -8,6 +8,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server --host 0.0.0.0",
+    "release": "webpack --config webpack.prod.config.js --progress -p",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

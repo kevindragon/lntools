@@ -15,11 +15,6 @@
             [tools.config :as config])
   (:gen-class))
 
-(defn get-custom-token [request]
-  (get-in
-    request
-    [:session :ring.middleware.anti-forgery/anti-forgery-token]))
-
 (def app-routes
      (routes
        (GET "/" [] (slurp (io/resource "public/index.html")))
@@ -38,7 +33,5 @@
                   (-> site-defaults
                       (assoc-in [:security :anti-forgery] false)
                       (dissoc :session)))
-                (wrap-restful-format :formats [:json :json-kw :html])
-                #_(wrap-anti-forgery {:read-token get-custom-token})
-                #_wrap-session)
+                (wrap-restful-format :formats [:json :json-kw :html]))
             {:port 3000})))
