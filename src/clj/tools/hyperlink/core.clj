@@ -1,4 +1,4 @@
-(ns tools.status.hyperlink
+(ns tools.hyperlink.core
   (:require [clojure.java.jdbc :as j]
             [tools.db :as db]))
 

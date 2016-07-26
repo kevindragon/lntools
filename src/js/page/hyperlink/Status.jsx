@@ -1,11 +1,11 @@
 import React from 'react';
 import $ from 'jquery';
 
-import Article from './hyperlink/Article.jsx';
-import Parallel from './hyperlink/Parallel.jsx';
-import OprLoadStatus from './hyperlink/OprLoadStatus.jsx';
+import Article from './component/Article.jsx';
+import Parallel from './component/Parallel.jsx';
+import OprLoadStatus from './component/OprLoadStatus.jsx';
 
-export default class Hyperlink extends React.Component {
+export default class Status extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -33,7 +33,7 @@ export default class Hyperlink extends React.Component {
 
     this.loading = true;
 
-    $.get('status/hyperlink', (data) => {
+    $.get('hyperlink/status', (data) => {
       this.setState(data);
       this.loading = false;
     }, 'json');

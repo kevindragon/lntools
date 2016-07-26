@@ -13,9 +13,9 @@
                  [org.clojure/java.jdbc "0.6.1"]
                  [org.xerial/sqlite-jdbc "3.8.11.2"]
                  [mysql/mysql-connector-java "5.1.39"]
-                 #_[org.clojure/java.jdbc "0.3.7"]
-                 #_[korma "0.4.2"]
-                 [ragtime "0.6.1"]]
+                 [ragtime "0.6.1"]
+                 [clj-http "2.2.0"]
+                 [org.clojure/data.zip "0.1.2"]]
 
   :plugins [[cider/cider-nrepl "0.12.0"]
             [lein-environ "1.0.3"]]
@@ -28,6 +28,8 @@
   {:uberjar {:aot :all
              :uberjar-name "tools.jar"}
 
-   :dev {:env {:database-url "dev.db"}}
+   :dev {:env {:database-url "dev.db"
+               :environment "dev"}}
 
-   :test {:env {:database-url "test.db"}}})
+   :test {:env {:database-url "test.db"
+                :environment "test"}}})
