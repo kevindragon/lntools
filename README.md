@@ -1,8 +1,6 @@
 # tools
 
-generated using Luminus version "2.9.10.81"
-
-FIXME
+Battle for efficiency
 
 ## Prerequisites
 
@@ -14,8 +12,10 @@ You will need [Leiningen][1] 2.0 or above installed.
 
 To start a web server for the application, run:
 
-    lein run
+    lein uberjar
+    java -jar target/uberjar/tools.jar migrate
+    java -jar target/uberjar/tools.jar
 
 ## License
 
-Copyright © 2016 FIXME
+Copyright © 2016 Kevin Jiang <kittymiky@gmail.com>
