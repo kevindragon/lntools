@@ -11,7 +11,8 @@
             [clojure.java.io :as io]
             [tools.hyperlink.route :as hyperlink-route]
             [tools.settings.route :as settings-route]
-            [tools.autonomy.route :as autonomy-route]))
+            [tools.autonomy.route :as autonomy-route]
+            [tools.memcache.route :as memcache-route]))
 
 
 (def app-routes
@@ -20,6 +21,7 @@
     (context "/hyperlink" [] hyperlink-route/routes)
     (context "/settings" [] settings-route/routes)
     (context "/autonomy" [] autonomy-route/routes)
+    (context "/memcache" [] memcache-route/routes)
     (route/not-found "404")))
 
 (def handles

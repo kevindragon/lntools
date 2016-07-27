@@ -14,7 +14,11 @@ export default class Dih extends React.Component {
     this.getData();
     this.interval = setInterval(() => {
       this.getData();
-    }, 1000000);
+    }, 20000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   getData() {

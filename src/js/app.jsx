@@ -12,11 +12,15 @@ import SettingsDatabase from './page/settings/Database.jsx';
 import SettingsDatabaseAdd from './page/settings/database/Add.jsx';
 import SettingsDih from './page/settings/Dih.jsx';
 import SettingsDihAdd from './page/settings/DihAdd.jsx';
+import SettingsMemcache from './page/settings/Memcache.jsx';
+import SettingsMemcacheAdd from './page/settings/MemcacheAdd.jsx';
 
 import HyperlinkStatus from './page/hyperlink/Status.jsx';
 
 import Autonomy from './page/Autonomy.jsx';
 import AutonomyDih from './page/autonomy/Dih.jsx';
+
+import Memcache from './page/Memcache.jsx';
 
 
 const app = document.getElementById('app');
@@ -30,6 +34,8 @@ render(
         <Route path="database/add" component={SettingsDatabaseAdd} />
         <Route path="dih" component={SettingsDih} />
         <Route path="dih/add" component={SettingsDihAdd} />
+        <Route path="memcache" component={SettingsMemcache} />
+        <Route path="memcache/add" component={SettingsMemcacheAdd} />
       </Route>
       <Route path="hyperlink">
         <Route path="status" component={HyperlinkStatus} />
@@ -37,6 +43,7 @@ render(
       <Route path="autonomy" component={Autonomy}>
         <Route path="dih" component={AutonomyDih} />
       </Route>
+      <Route path="memcache" component={Memcache} />
     </Route>
   </Router>,
   app

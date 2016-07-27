@@ -12,10 +12,11 @@
                  [environ "1.0.3"]
                  [org.clojure/java.jdbc "0.6.1"]
                  [org.xerial/sqlite-jdbc "3.8.11.2"]
-                 [mysql/mysql-connector-java "5.1.39"]
+                 [mysql/mysql-connector-java "5.1.35"]
                  [ragtime "0.6.1"]
                  [clj-http "2.2.0"]
-                 [org.clojure/data.zip "0.1.2"]]
+                 [org.clojure/data.zip "0.1.2"]
+                 [clojurewerkz/spyglass "1.1.0"]]
 
   :plugins [[cider/cider-nrepl "0.12.0"]
             [lein-environ "1.0.3"]]

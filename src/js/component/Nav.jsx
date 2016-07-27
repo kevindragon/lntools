@@ -11,6 +11,7 @@ export default class Nav extends React.Component {
           <ul class="sub">
             <li><Link to="settings/database"> - Database</Link></li>
             <li><Link to="settings/dih"> - Dih</Link></li>
+            <li><Link to="settings/memcache"> - Memcache</Link></li>
           </ul>
         </li>
         <li>
@@ -28,6 +29,9 @@ export default class Nav extends React.Component {
               <Link to="autonomy/dih">- Dih</Link>
             </li>
           </ul>
+        </li>
+        <li>
+          <Link to="memcache">Memcache</Link>
         </li>
       </ul>
     </div>

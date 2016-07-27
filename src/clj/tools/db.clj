@@ -15,6 +15,11 @@
     db
     ["select * from databases where name = ?" name]))
 
+(defn memcache-by-id [id]
+  (first
+    (j/query
+      db
+      ["select * from memcache where id = ?" id])))
 
 (defn lnc-db []
   (let [opt (first (databases-by-name "lnc"))]
