@@ -9,6 +9,7 @@ export default class Nav extends React.Component {
         <li>
           <span>Settings</span>
           <ul class="sub">
+            <li><Link to="settings/user"> - User</Link></li>
             <li><Link to="settings/database"> - Database</Link></li>
             <li><Link to="settings/dih"> - Dih</Link></li>
             <li><Link to="settings/dah"> - Dah</Link></li>
@@ -36,6 +37,9 @@ export default class Nav extends React.Component {
         </li>
         <li>
           <Link to="memcache">Memcache</Link>
+        </li>
+        <li>
+          <a href="/logout">Sign out</a>
         </li>
       </ul>
     </div>

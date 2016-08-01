@@ -7,6 +7,8 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import Layout from './Layout.jsx';
 import Home from './page/Home.jsx';
 
+import SettingsUser from './page/settings/User.jsx';
+import SettingsUserAdd from './page/settings/UserAdd.jsx';
 import Settings from './page/settings/Settings.jsx';
 import SettingsDatabase from './page/settings/Database.jsx';
 import SettingsDatabaseAdd from './page/settings/database/Add.jsx';
@@ -33,6 +35,8 @@ render(
     <Route path="/" component={Layout}>
       <IndexRoute component={Home} />
       <Route path="settings" component={Settings}>
+        <Route path="user" component={SettingsUser} />
+        <Route path="user/add" component={SettingsUserAdd} />
         <Route path="database" component={SettingsDatabase} />
         <Route path="database/add" component={SettingsDatabaseAdd} />
         <Route path="dih" component={SettingsDih} />

@@ -20,8 +20,8 @@ export default class Memcache extends React.Component {
   }
 
   handleClear(id) {
-    $.post('memcache/clear', {id}, () => {
-      alert('clear ok');
+    $.post('memcache/clear', {id}, (data) => {
+      alert('clear ' + data['status']);
     }, 'json').fail((data, status, statusText) => {
       alert(status + ": " + statusText);
     });

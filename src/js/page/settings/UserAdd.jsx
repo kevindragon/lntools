@@ -1,13 +1,12 @@
 import React from 'react';
 import $ from 'jquery';
 
-export default class DihAdd extends React.Component {
+export default class UserAdd extends React.Component {
   constructor() {
     super();
     this.state = {
       name: '',
-      host: '',
-      port: ''
+      passport: ''
     };
   }
 
@@ -18,18 +17,25 @@ export default class DihAdd extends React.Component {
   }
 
   handleSubmit() {
-    const { name, host, port } = this.state;
+    const { name, passport } = this.state;
 
-    $.post('settings/dih', {
-      name, host, port
-    }, () => {
-      location.href = '#/settings/dih';
-    }, 'json');
+    $.ajax({
+      url: 'settings/user',
+      type: 'PUT',
+      data: {name, passport},
+      dataType: 'json',
+      success: () => {
+        location.href = '#/settings/user';
+      },
+      error: () => {
+        alert('error');
+      }
+    });
   }
 
   render() {
     return <div class="dih-add">
-      <h2>Add a dih</h2>
+      <h2>Add a user</h2>
       <table class="table">
         <tbody>
         <tr>
@@ -40,17 +46,10 @@ export default class DihAdd extends React.Component {
           </td>
         </tr>
         <tr>
-          <td>host:</td>
+          <td>passport:</td>
           <td>
             <input type="text"
-                   onChange={(e) => this.updateField('host', e.target.value)}/>
-          </td>
-        </tr>
-        <tr>
-          <td>port:</td>
-          <td>
-            <input type="text"
-                   onChange={(e) => this.updateField('port', e.target.value)}/>
+                   onChange={(e) => this.updateField('passport', e.target.value)}/>
           </td>
         </tr>
         </tbody>

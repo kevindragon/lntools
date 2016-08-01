@@ -20,7 +20,7 @@ $gap20: 20px;
 .container {
   display: flex;
   .nav {
-    flex: 0 1 120px;
+    flex: 0 100px;
     line-height: 1.5em;
     padding: $gap10;
     background-color: $bgGray;

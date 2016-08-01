@@ -6,3 +6,4 @@ target
 .lein-repl-history
 node_modules
 *.db
+.lein-env

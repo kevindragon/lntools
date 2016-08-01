@@ -4,7 +4,8 @@
              [databases database-add database-delete]]
             [tools.settings.dih :as dih-handle]
             [tools.settings.dah :as dah-handle]
-            [tools.settings.memcache :as mc]))
+            [tools.settings.memcache :as mc]
+            [tools.settings.user :as user]))
 
 (def routes
   (c/routes
@@ -23,5 +24,9 @@
     (c/GET "/memcache" [] (mc/memcaches))
     (c/POST "/memcache" request (mc/memcache-add request))
     (c/DELETE "/memcache" {:keys [params]} (mc/memcache-delete params))
+
+    (c/GET "/user" request (user/users request))
+    (c/PUT "/user" {:keys [params]} (user/user-add params))
+    (c/DELETE "/user" {:keys [params]} (user/user-delete params))
 
     ))
