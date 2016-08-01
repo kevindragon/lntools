@@ -1,5 +1,11 @@
 .autonomy {
   .dih {
-    float: left;
+    table.table {
+      float: left;
+      margin-left: 5px;
+      &:nth-child(1) {
+        margin-left: 0;
+      }
+    }
   }
 }
