@@ -20,6 +20,20 @@ export default class Memcache extends React.Component {
     }, 'json');
   }
 
+  handleDelete(id) {
+    $.ajax({
+      url: 'settings/memcache',
+      type: 'DELETE',
+      data: {id},
+      success: () => {
+        this.getData();
+      },
+      error: () => {
+        alert('error');
+      }
+    });
+  }
+
   render() {
     const {memcaches} = this.state;
 
@@ -31,6 +45,7 @@ export default class Memcache extends React.Component {
           <th>name</th>
           <th>host</th>
           <th>port</th>
+          <th></th>
         </tr>
         </thead>
         <tbody>
@@ -40,13 +55,18 @@ export default class Memcache extends React.Component {
             <td>{ mc.name }</td>
             <td>{ mc.host }</td>
             <td>{ mc.port }</td>
+            <td>
+              <button onClick={() => this.handleDelete(mc.id)}>Delete</button>
+            </td>
           </tr>
         )}
         </tbody>
       </table>
-      <Link to="/settings/memcache/add">
-        <button>Add</button>
-      </Link>
+      <div class="bottom-btn-wrap">
+        <Link to="/settings/memcache/add">
+          <button>Add</button>
+        </Link>
+      </div>
     </div>;
   }
 }

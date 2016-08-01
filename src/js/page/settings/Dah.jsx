@@ -2,11 +2,11 @@ import React from 'react';
 import $ from 'jquery';
 import { Link } from 'react-router';
 
-export default class Dih extends React.Component {
+export default class Dah extends React.Component {
   constructor() {
     super();
     this.state = {
-      dihs: []
+      dahs: []
     };
   }
 
@@ -15,18 +15,19 @@ export default class Dih extends React.Component {
   }
 
   getData() {
-    $.get('settings/dih', (dihs) => {
-      this.setState({dihs});
+    $.get('settings/dah', (dahs) => {
+      this.setState({dahs});
     }, 'json');
   }
 
   handleDelete(id) {
     $.ajax({
-      url: 'settings/dih',
+      url: 'settings/dah',
       type: 'DELETE',
       data: {id},
       success: () => {
         this.getData();
+        alert('delete ok');
       },
       error: () => {
         alert('error');
@@ -35,9 +36,9 @@ export default class Dih extends React.Component {
   }
 
   render() {
-    const { dihs } = this.state;
+    const { dahs } = this.state;
 
-    return <div class="dih">
+    return <div class="dah">
       <table class="table">
         <thead>
         <tr>
@@ -49,22 +50,22 @@ export default class Dih extends React.Component {
         </tr>
         </thead>
         <tbody>
-        {dihs.map(
-          (dih, index) => <tr key={index}>
-            <td>{ dih.id }</td>
-            <td>{ dih.name }</td>
-            <td>{ dih.host }</td>
-            <td>{ dih.port }</td>
+        {dahs.map(
+          (dah, index) => <tr key={index}>
+            <td>{ dah.id }</td>
+            <td>{ dah.name }</td>
+            <td>{ dah.host }</td>
+            <td>{ dah.port }</td>
             <td>
-              <button onClick={(e) => this.handleDelete(dih.id)}>Delete</button>
+              <button onClick={(e) => this.handleDelete(dah.id)}>Delete</button>
             </td>
           </tr>
         )}
         </tbody>
       </table>
       <div class="bottom-btn-wrap">
-        <Link to="settings/dih/add">
-          <button>Add</button>
+        <Link to="settings/dah/add">
+          <button>Add dah</button>
         </Link>
       </div>
     </div>;

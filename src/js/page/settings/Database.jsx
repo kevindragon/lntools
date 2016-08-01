@@ -27,7 +27,6 @@ export default class SettingsDatabase extends React.Component {
       data: {id},
       success: () => {
         this.getData();
-        alert('Delete ok');
       },
       error: () => {
         alert('Failed');
@@ -66,8 +65,10 @@ export default class SettingsDatabase extends React.Component {
         )}
         </tbody>
       </table>
-      <div>
-        <Link to="settings/database/add">Add</Link>
+      <div class="bottom-btn-wrap">
+        <Link to="settings/database/add">
+          <button>Add</button>
+        </Link>
       </div>
     </div>
   }

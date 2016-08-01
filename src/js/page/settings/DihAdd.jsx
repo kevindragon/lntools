@@ -56,7 +56,7 @@ export default class DihAdd extends React.Component {
         </tr>
         </tbody>
       </table>
-      <div>
+      <div class="bottom-btn-wrap">
         <button onClick={() => this.handleSubmit()}>Add</button>
       </div>
     </div>;

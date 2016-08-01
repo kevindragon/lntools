@@ -33,7 +33,9 @@ export default class Dih extends React.Component {
     return <div class="dih">
       {data.map(
         (dih, index) => <table class="table" key={index}>
-          <caption>{dih.name}</caption>
+          <caption>
+            <h3>{dih.name}</h3>
+          </caption>
           <thead>
           <tr>
             <th>id</th>
