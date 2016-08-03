@@ -1,3 +1,8 @@
+$lineColor: #dedede;
+$bgGray: #efefef;
+$gap10: 10px;
+$gap20: 20px;
+
 html, body {
   margin: 0;
   padding: 0;
@@ -8,14 +13,32 @@ a {
   text-decoration: none;
 }
 
+.hide {
+  display: none;
+}
+
+.fold {
+  cursor: pointer;
+}
+
+table.table {
+  min-width: 200px;
+  border: 1px solid $lineColor;
+  border-collapse: collapse;
+
+  td, th {
+    padding: 5px;
+    border: 1px solid $lineColor;
+  }
+}
+
+.bottom-btn-wrap {
+  margin-top: 10px;
+}
+
 #app {
   padding: 20px;
 }
-
-$lineColor: #dedede;
-$bgGray: #efefef;
-$gap10: 10px;
-$gap20: 20px;
 
 .container {
   display: flex;
@@ -41,21 +64,6 @@ $gap20: 20px;
     flex: 1;
     margin-left: $gap20;
   }
-}
-
-table.table {
-  min-width: 200px;
-  border: 1px solid $lineColor;
-  border-collapse: collapse;
-
-  td, th {
-    padding: 5px;
-    border: 1px solid $lineColor;
-  }
-}
-
-.bottom-btn-wrap {
-  margin-top: 10px;
 }
 
 @import "hyperlink";

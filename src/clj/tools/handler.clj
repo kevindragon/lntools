@@ -1,13 +1,10 @@
 (ns tools.handler
   (:require [compojure.core :refer [routes GET POST context]]
             [compojure.route :as route]
-            [ring.adapter.jetty :refer [run-jetty]]
             [ring.middleware.reload :refer [wrap-reload]]
             [ring.middleware.format :refer [wrap-restful-format]]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
-            [ring.middleware.session :refer [wrap-session]]
             [ring.middleware.anti-forgery :refer [wrap-anti-forgery]]
-            [environ.core :refer [env]]
             [clojure.java.io :as io]
             [tools.hyperlink.route :as hyperlink-route]
             [tools.settings.route :as settings-route]
