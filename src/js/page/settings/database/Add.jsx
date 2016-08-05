@@ -28,7 +28,6 @@ export default class Add extends React.Component {
     $.post('settings/database', {
       name, host, username, password, dbname
     }, () => {
-      alert('post ok');
       location.href = '#/settings/database';
     }, 'json');
   }

@@ -9,7 +9,7 @@ export default class DataGap extends React.Component {
   constructor() {
     super();
     this.dateFormat = "YYYY-MM-DD";
-    this.timeFormat = "hh:mm:ss";
+    this.timeFormat = "HH:mm:ss";
     this.format = this.dateFormat + " " + this.timeFormat;
     this.now = new Date();
     this.yesterday = new Date(this.now.getTime() - 86400000);

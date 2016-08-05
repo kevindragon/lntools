@@ -36,25 +36,24 @@
 (defn get-autn-xml [host port db ids]
   (client/get
     (str "http://" host ":" port
-         "/action=query&databasematch=" db
+         "/action=query&combine=simple&databasematch=" db
          "&MaxResults=" (count ids) "&fieldtext=EQUAL{"
          (str/join "," ids)
          "}:id&anylanguage=true&printfields=id")
     config/proxy-setting))
 
 (defn get-id-list [xml-str]
-  (autn-lib/get-tag-in
-    (autn-lib/parse-xml-str xml-str)
-    [:autnresponse
-     :responsedata
-     :autn:hit
-     :autn:content
-     :DOCUMENT
-     :ID
-     text
-     first
-     str
-     string->int]))
+  (map
+    #(string->int %)
+    (autn-lib/get-tag-in
+      (autn-lib/parse-xml-str xml-str)
+      [:autnresponse
+       :responsedata
+       :autn:hit
+       :autn:content
+       :DOCUMENT
+       :ID
+       text])))
 
 (defn query-need-fetch [host port autn-db ids]
   (if (empty? ids)

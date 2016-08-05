@@ -23,7 +23,6 @@ export default class DahAdd extends React.Component {
     $.post('settings/dah', {
       name, host, port
     }, () => {
-      alert('post ok');
       location.href = '#/settings/dah';
     }, 'json');
   }
