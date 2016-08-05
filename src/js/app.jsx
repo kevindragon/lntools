@@ -1,3 +1,4 @@
+require('react-select/dist/react-select.css');
 require('../sass/style.scss');
 
 import React from 'react';
@@ -18,12 +19,15 @@ import SettingsDah from './page/settings/Dah.jsx';
 import SettingsDahAdd from './page/settings/DahAdd.jsx';
 import SettingsMemcache from './page/settings/Memcache.jsx';
 import SettingsMemcacheAdd from './page/settings/MemcacheAdd.jsx';
+import SettingsDataGap from './page/settings/DataGap.jsx';
+import SettingsDataGapAdd from './page/settings/DataGapAdd.jsx';
 
 import HyperlinkStatus from './page/hyperlink/Status.jsx';
 
 import Autonomy from './page/Autonomy.jsx';
 import AutonomyDih from './page/autonomy/Dih.jsx';
 import AutonomyDah from './page/autonomy/Dah.jsx';
+import AutonomyDataGap from './page/autonomy/DataGap.jsx';
 
 import Memcache from './page/Memcache.jsx';
 
@@ -45,6 +49,8 @@ render(
         <Route path="dah/add" component={SettingsDahAdd} />
         <Route path="memcache" component={SettingsMemcache} />
         <Route path="memcache/add" component={SettingsMemcacheAdd} />
+        <Route path="data_gap" component={SettingsDataGap} />
+        <Route path="data_gap/add" component={SettingsDataGapAdd} />
       </Route>
       <Route path="hyperlink">
         <Route path="status" component={HyperlinkStatus} />
@@ -52,6 +58,7 @@ render(
       <Route path="autonomy" component={Autonomy}>
         <Route path="dih" component={AutonomyDih} />
         <Route path="dah" component={AutonomyDah} />
+        <Route path="data_gap" component={AutonomyDataGap} />
       </Route>
       <Route path="memcache" component={Memcache} />
     </Route>

@@ -1,9 +1,8 @@
 (ns tools.db
   (:require [clojure.java.jdbc :as j]
-            [tools.config :as config]))
+            [tools.env :as e]))
 
-(def db {:subprotocol "sqlite"
-         :subname     config/database-url})
+(def db e/database)
 
 (defn databases []
   (j/query

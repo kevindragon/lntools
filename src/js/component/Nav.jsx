@@ -35,6 +35,7 @@ export default class Nav extends React.Component {
             <li><Link to="settings/dih">Dih</Link></li>
             <li><Link to="settings/dah">Dah</Link></li>
             <li><Link to="settings/memcache">Memcache</Link></li>
+            <li><Link to="settings/data_gap">Data gap</Link></li>
           </ul>
         </li>
         <li>
@@ -53,6 +54,9 @@ export default class Nav extends React.Component {
             </li>
             <li>
               <Link to="autonomy/dah">Dah</Link>
+            </li>
+            <li>
+              <Link to="autonomy/data_gap">Data gap</Link>
             </li>
           </ul>
         </li>

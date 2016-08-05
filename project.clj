@@ -26,11 +26,11 @@
   :main ^:skip-aot tools.core
 
   :profiles
-  {:uberjar {:aot :all
+  {:uberjar {:aot          :all
              :uberjar-name "tools.jar"}
 
-   :dev {:env {:database-url "dev.db"
-               :environment "dev"}}
+   :dev     {:source-paths ["env/dev"]}
 
-   :test {:env {:database-url "test.db"
-                :environment "test"}}})
+   :test    {:source-paths ["env/test"]}
+
+   :prod    {:source-paths ["env/prod"]}})

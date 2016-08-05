@@ -3,6 +3,11 @@ $bgGray: #efefef;
 $gap10: 10px;
 $gap20: 20px;
 
+* {
+  font-size: 100%;
+  box-sizing: border-box;
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -34,6 +39,11 @@ table.table {
 
 .bottom-btn-wrap {
   margin-top: 10px;
+}
+
+.tips {
+  color: #dedede;
+  font-size: 0.85em;
 }
 
 #app {

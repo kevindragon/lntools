@@ -5,7 +5,8 @@
             [tools.settings.dih :as dih-handle]
             [tools.settings.dah :as dah-handle]
             [tools.settings.memcache :as mc]
-            [tools.settings.user :as user]))
+            [tools.settings.user :as user]
+            [tools.settings.data-gap :as data-gap]))
 
 (def routes
   (c/routes
@@ -28,5 +29,9 @@
     (c/GET "/user" request (user/users request))
     (c/PUT "/user" {:keys [params]} (user/user-add params))
     (c/DELETE "/user" {:keys [params]} (user/user-delete params))
+
+    (c/GET "/data_gap" [] (data-gap/data-gaps))
+    (c/PUT "/data_gap" {:keys [params]} (data-gap/add params))
+    (c/DELETE "/data_gap" {:keys [params]} (data-gap/delete params))
 
     ))
