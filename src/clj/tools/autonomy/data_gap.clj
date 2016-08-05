@@ -62,8 +62,8 @@
     (let [x (get-autn-xml host port autn-db ids)
           autn-ids (get-id-list (:body x))]
       (vec (clojure.set/difference
-             (set autn-ids)
-             (set ids))))))
+             (set ids)
+             (set autn-ids))))))
 
 (defn query-need-delete [host port autn-db ids]
   (if (empty? ids)
