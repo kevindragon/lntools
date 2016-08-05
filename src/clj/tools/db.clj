@@ -14,6 +14,11 @@
     db
     ["select * from databases where name = ?" name]))
 
+(defn database-by-id [id]
+  (j/query
+    db
+    ["select * from databases where id = ?" id]))
+
 (defn memcache-by-id [id]
   (first
     (j/query
@@ -29,6 +34,13 @@
 
 (defn stg-db []
   (let [opt (first (databases-by-name "stg"))]
+    {:subprotocol "mysql"
+     :subname     (str "//" (opt :host) "/" (opt :dbname))
+     :user        (opt :username)
+     :password    (opt :password)}))
+
+(defn get-db [id]
+  (let [opt (first (database-by-id id))]
     {:subprotocol "mysql"
      :subname     (str "//" (opt :host) "/" (opt :dbname))
      :user        (opt :username)

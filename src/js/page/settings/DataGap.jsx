@@ -44,6 +44,7 @@ export default class DataGap extends React.Component {
           <tr>
             <th>id</th>
             <th>name</th>
+            <th>database</th>
             <th>dah</th>
             <th>autonomy db</th>
             <th>sql statement</th>
@@ -55,6 +56,7 @@ export default class DataGap extends React.Component {
             (dataGap, index) => <tr key={index}>
               <td>{ dataGap.id }</td>
               <td>{ dataGap.name }</td>
+              <td>{ dataGap.database_name }</td>
               <td>{ dataGap.dah_name}-{ dataGap.dah_host }:{ dataGap.dah_port }</td>
               <td>{ dataGap.autn_db_name }</td>
               <td>{ dataGap.sql_statement }</td>

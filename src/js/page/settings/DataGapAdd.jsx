@@ -1,26 +1,36 @@
 import React from 'react';
 import { Link } from 'react-router';
 import $ from 'jquery';
+import Select from 'react-select';
 
 export default class DataGap extends React.Component {
   constructor() {
     super();
     this.state = {
       name: '',
+      dbId: '',
       dahId: '',
       autnDBName: '',
       sqlStatement: '',
-      dahs: []
+      dahs: [],
+      databases: []
     };
   }
 
   componentDidMount() {
     this.getEngines();
+    this.getDatabases();
   }
 
   getEngines() {
     $.get('settings/dah', (dahs) => {
       this.setState({dahs});
+    }, 'json');
+  }
+
+  getDatabases() {
+    $.get('settings/databases', (databases) => {
+      this.setState({databases});
     }, 'json');
   }
 
@@ -30,9 +40,24 @@ export default class DataGap extends React.Component {
     this.setState(obj);
   }
 
+  dbOptions(databases) {
+    return databases.map((db, i) => {
+      return {value: db.id, label: db.name}
+    });
+  }
+
+  dahOptions(dahs) {
+    return dahs.map((dah, i) => {
+      return {
+        value: dah.id,
+        label: dah.name + " - " + dah.host + ":" + dah.port
+      }
+    });
+  }
+
   handleSubmit() {
-    const { name, dahId, autnDBName, sqlStatement } = this.state;
-    const data = {name, dahId, autnDBName, sqlStatement};
+    const { name, dbId, dahId, autnDBName, sqlStatement } = this.state;
+    const data = {name, dbId, dahId, autnDBName, sqlStatement};
     $.ajax({
       url: 'settings/data_gap',
       type: 'PUT',
@@ -47,7 +72,7 @@ export default class DataGap extends React.Component {
   }
 
   render() {
-    const { dahs } = this.state;
+    const { dbId, dahId, dahs, databases } = this.state;
 
     return (
       <div class="data-gap-add">
@@ -57,20 +82,30 @@ export default class DataGap extends React.Component {
           <tr>
             <td>name</td>
             <td>
-              <input type="text" onChange={(e) => this.updateField('name', e.target.value)}/>
+              <input
+                type="text"
+                onChange={(e) => this.updateField('name', e.target.value)}
+              />
             </td>
           </tr>
           <tr>
-            <td>engine</td>
+            <td>Database</td>
             <td>
-              <select onChange={(e) => this.updateField('dahId', e.target.value)}>
-                <option value="0">-- select --</option>
-                {dahs.map(
-                  (dah, index) => <option value={dah.id} key={index}>
-                    {dah.name} - {dah.host}:{dah.port}
-                  </option>
-                )}
-              </select>
+              <Select
+                value={dbId}
+                options={this.dbOptions(databases)}
+                onChange={(o) => this.updateField('dbId', o.value)}
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Dah</td>
+            <td>
+              <Select
+                value={dahId}
+                options={this.dahOptions(dahs)}
+                onChange={(o) => this.updateField('dahId', o.value)}
+              />
             </td>
           </tr>
           <tr>
@@ -82,8 +117,12 @@ export default class DataGap extends React.Component {
           <tr>
             <td>sql statement</td>
             <td>
-              <textarea cols="60" rows="10" onChange={(e) => this.updateField('sqlStatement', e.target.value)}></textarea>
-              <div class="tips">需要：datetime_field &gt;= ? and datetime_field &lt;= ?</div>
+              <textarea
+                cols="60"
+                rows="10"
+                onChange={(e) => this.updateField('sqlStatement', e.target.value)}
+              />
+              <div class="tips">eg.: select id, display from table where datetime_field &gt;= ? and datetime_field &lt;= ?</div>
             </td>
           </tr>
           </tbody>

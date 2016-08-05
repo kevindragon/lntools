@@ -3,11 +3,12 @@
             [tools.db :as db]))
 
 
-(defn add [{:keys [name dahId autnDBName sqlStatement]}]
+(defn add [{:keys [name dbId dahId autnDBName sqlStatement]}]
   (let [ok? (j/insert!
               db/db
               :data_gap
               {:name name
+               :database_id dbId
                :dah_id dahId
                :autn_db_name autnDBName
                :sql_statement sqlStatement})]
@@ -22,6 +23,13 @@
 (defn data-gaps []
   (j/query
     db/db
-    ["select data_gap.id, data_gap.name, autn_db_name, sql_statement,
-      dah.name as dah_name, dah.host as dah_host, dah.port as dah_port
-      from data_gap left join dah where data_gap.dah_id = dah.id"]))
+    ["select
+      data_gap.*,
+      databases.name as database_name,
+      dah.name as dah_name,
+      dah.host as dah_host, dah.port as dah_port
+      from data_gap
+      left join dah on data_gap.dah_id = dah.id
+      left join databases on data_gap.database_id = databases.id
+      where data_gap.dah_id = dah.id"]))
+

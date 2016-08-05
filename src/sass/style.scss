@@ -3,6 +3,12 @@ $bgGray: #efefef;
 $gap10: 10px;
 $gap20: 20px;
 
+@for $i from 1 through 10 {
+  .width-#{$i * 50} {
+    width: $i * 50px;
+  }
+}
+
 * {
   font-size: 100%;
   box-sizing: border-box;
@@ -42,7 +48,7 @@ table.table {
 }
 
 .tips {
-  color: #dedede;
+  color: #cacaca;
   font-size: 0.85em;
 }
 

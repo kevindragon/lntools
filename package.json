@@ -26,7 +26,9 @@
   "homepage": "https://github.com/kevindragon/lntools#readme",
   "dependencies": {
     "jquery": "^3.1.0",
+    "moment": "^2.14.1",
     "react": "^15.2.1",
+    "react-datetime": "^2.5.0",
     "react-dom": "^15.2.1",
     "react-router": "^2.6.0",
     "react-select": "^1.0.0-beta14"

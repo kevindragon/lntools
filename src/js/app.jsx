@@ -1,4 +1,5 @@
 require('react-select/dist/react-select.css');
+require('react-datetime/css/react-datetime.css');
 require('../sass/style.scss');
 
 import React from 'react';
