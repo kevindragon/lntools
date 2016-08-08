@@ -10,5 +10,5 @@
         (handle request)
         (if user
           (handle request)
-          (response/redirect "/login"))))))
+          (response/redirect "/login" 301))))))
 
