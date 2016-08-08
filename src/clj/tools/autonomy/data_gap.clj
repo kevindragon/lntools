@@ -27,7 +27,10 @@
     (group-by
       :display
       (map
-        #(assoc % :display (if (:display %) :show :hide))
+        #(assoc % :display (if (or (:display %) 
+                                   (= 1 (:display %)))
+                             :show
+                             :hide))
         data-from-db))))
 
 (defn string->int [s]
