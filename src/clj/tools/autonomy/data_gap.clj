@@ -27,7 +27,7 @@
     (group-by
       :display
       (map
-        #(assoc % :display (if (or (:display %) 
+        #(assoc % :display (if (or (= true (:display %))
                                    (= 1 (:display %)))
                              :show
                              :hide))
