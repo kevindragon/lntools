@@ -26,7 +26,6 @@
           :oprLoadStatus (opr-load-status)}})
 
 (defn prepare [{:keys [dbId providerId status rows to]}]
-  (println dbId, providerId, status rows)
   (let [db-map (db/get-db dbId)
         sql-stmt "UPDATE opr_load_status SET status = ?
                   WHERE provider_id = ? and status = ? LIMIT ?"
