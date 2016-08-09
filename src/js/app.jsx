@@ -23,7 +23,9 @@ import SettingsMemcacheAdd from './page/settings/MemcacheAdd.jsx';
 import SettingsDataGap from './page/settings/DataGap.jsx';
 import SettingsDataGapAdd from './page/settings/DataGapAdd.jsx';
 
+import Hyperlink from './page/Hyperlink.jsx';
 import HyperlinkStatus from './page/hyperlink/Status.jsx';
+import HyperlinkPrepare from './page/hyperlink/Prepare.jsx';
 
 import Autonomy from './page/Autonomy.jsx';
 import AutonomyDih from './page/autonomy/Dih.jsx';
@@ -53,8 +55,9 @@ render(
         <Route path="data_gap" component={SettingsDataGap} />
         <Route path="data_gap/add" component={SettingsDataGapAdd} />
       </Route>
-      <Route path="hyperlink">
+      <Route path="hyperlink" component={Hyperlink}>
         <Route path="status" component={HyperlinkStatus} />
+        <Route path="prepare" component={HyperlinkPrepare} />
       </Route>
       <Route path="autonomy" component={Autonomy}>
         <Route path="dih" component={AutonomyDih} />

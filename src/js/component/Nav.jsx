@@ -44,6 +44,9 @@ export default class Nav extends React.Component {
             <li>
               <Link to="hyperlink/status">Status</Link>
             </li>
+            <li>
+              <Link to="hyperlink/prepare">Prepare</Link>
+            </li>
           </ul>
         </li>
         <li>
