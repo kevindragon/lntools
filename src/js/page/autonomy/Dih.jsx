@@ -1,20 +1,27 @@
 import React from 'react';
 import $ from 'jquery';
 
+import Loading from '../../component/Loading.jsx';
+
 export default class Dih extends React.Component {
   constructor() {
     super();
     this.state = {
+      loading: false,
       data: []
     };
     this.interval = null;
+  }
+
+  loading(display) {
+    this.setState({loading: display});
   }
 
   componentDidMount() {
     this.getData();
     this.interval = setInterval(() => {
       this.getData();
-    }, 20000);
+    }, 15000);
   }
 
   componentWillUnmount() {
@@ -22,15 +29,21 @@ export default class Dih extends React.Component {
   }
 
   getData() {
+    const { loading } = this.state;
+    if (loading) return;
+
+    this.loading(true);
     $.get('autonomy/dih', (data) => {
       this.setState({data});
+      this.loading(false);
     }, 'json');
   }
 
   render() {
-    const { data } = this.state;
+    const { loading, data } = this.state;
 
     return <div class="dih">
+      <Loading show={loading} />
       {data.map(
         (dih, index) => <table class="table" key={index}>
           <caption>

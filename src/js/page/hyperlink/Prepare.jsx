@@ -55,7 +55,10 @@ export default class Prepare extends React.Component {
   options() {
     const { dbs } = this.state;
     return dbs.map((db) => {
-      return {value: db.id, label: db.name}
+      return {
+        value: db.id,
+        label: db.name+' - '+db.host+'/'+db.dbname
+      }
     });
   }
 

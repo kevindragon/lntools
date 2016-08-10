@@ -1,10 +1,13 @@
 import React from 'react';
 import $ from 'jquery';
 
+import Loading from '../../component/Loading.jsx';
+
 export default class Dah extends React.Component {
   constructor() {
     super();
     this.state = {
+      loading: false,
       data: []
     };
     this.interval = null;
@@ -21,9 +24,18 @@ export default class Dah extends React.Component {
     clearInterval(this.interval);
   }
 
+  loading(display) {
+    this.setState({loading: display});
+  }
+
   getData() {
+    const { loading } = this.state;
+    if (loading) return;
+
+    this.loading(true);
     $.get('autonomy/dah', (data) => {
       this.setState({data});
+      this.loading(false);
     }, 'json');
   }
 
@@ -36,9 +48,10 @@ export default class Dah extends React.Component {
   }
 
   render() {
-    const { data } = this.state;
+    const { loading, data } = this.state;
 
     return <div class="dah">
+      <Loading show={loading} />
       {data.map(
         (dah, index) => <table class="table" key={index}>
           <caption>

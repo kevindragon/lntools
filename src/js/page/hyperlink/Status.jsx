@@ -4,16 +4,17 @@ import $ from 'jquery';
 import Article from './component/Article.jsx';
 import Parallel from './component/Parallel.jsx';
 import OprLoadStatus from './component/OprLoadStatus.jsx';
+import Loading from '../../component/Loading.jsx';
 
 export default class Status extends React.Component {
   constructor() {
     super();
     this.state = {
+      loading: false,
       article: [],
       oprLoadStatus: [],
       parallel: []
     };
-    this.loading = false;
     this.inteval = null;
   }
 
@@ -21,28 +22,34 @@ export default class Status extends React.Component {
     this.getData();
     this.inteval = setInterval(() => {
       this.getData();
-    }, 20000)
+    }, 15000)
   }
 
   componentWillUnmount() {
     clearInterval(this.inteval);
   }
 
+  loading(display) {
+    this.setState({loading: display});
+  }
+
   getData() {
-    if (this.loading) return;
+    const { loading } = this.state;
 
-    this.loading = true;
+    if (loading) return;
 
+    this.loading(true);
     $.get('hyperlink/status', (data) => {
       this.setState(data);
-      this.loading = false;
+      this.loading(false);
     }, 'json');
   }
 
   render() {
-    const { article, oprLoadStatus, parallel } = this.state;
+    const { loading, article, oprLoadStatus, parallel } = this.state;
 
     return <div class="hyperlink">
+      <Loading show={loading} />
       <h2>Hyperlink Status</h2>
       <div class="status-list">
         <div class="column">
