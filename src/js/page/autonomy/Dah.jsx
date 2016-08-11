@@ -36,15 +36,21 @@ export default class Dah extends React.Component {
     $.get('autonomy/dah', (data) => {
       this.setState({data});
       this.loading(false);
-    }, 'json');
+    }, 'json').fail(() => {
+      this.loading(false);
+    });
   }
 
   engineOperate(id, engineId, status) {
+    this.loading(true);
     $.post('autonomy/dah', {
       id, engineId, status
     }, (data) => {
       this.getData();
-    }, 'json');
+      this.loading(false);
+    }, 'json').fail(() => {
+      this.loading(false);
+    });
   }
 
   render() {

@@ -42,7 +42,9 @@ export default class Status extends React.Component {
     $.get('hyperlink/status', (data) => {
       this.setState(data);
       this.loading(false);
-    }, 'json');
+    }, 'json').fail(() => {
+      this.loading(false);
+    });
   }
 
   render() {

@@ -36,7 +36,9 @@ export default class Dih extends React.Component {
     $.get('autonomy/dih', (data) => {
       this.setState({data});
       this.loading(false);
-    }, 'json');
+    }, 'json').fail(() => {
+      this.loading(false);
+    });
   }
 
   render() {
