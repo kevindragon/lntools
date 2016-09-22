@@ -10,3 +10,13 @@
   :nav
   (fn [db _]
     (:nav db)))
+
+(rf/reg-sub
+  :loading?
+  (fn [db _]
+    (:loading? db)))
+
+(rf/reg-sub
+  :data-settings-users
+  (fn [db _]
+    (get-in db [:data :settings :users])))

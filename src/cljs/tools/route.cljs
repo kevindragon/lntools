@@ -7,8 +7,11 @@
 
 (enable-console-print!)
 
-(def routes ["/" [["" :index]
-                  [true :not-found]]])
+(def routes
+  ["" {#"/?"        :index
+       "/settings/" {"user" {#"/?"  :settings|user
+                             "/add" :settings|user|add}}}
+   [true :not-found]])
 
 (def history
   (doto (History.)

@@ -1,5 +1,6 @@
 (ns tools.views
-  (:require [re-frame.core :as rf]))
+  (:require [re-frame.core :as rf]
+            [tools.views.settings :as settings]))
 
 (enable-console-print!)
 
@@ -21,7 +22,7 @@
       [:li [:a {:href href} name]]
       [:li
        [:span.fold {:on-click (fn [_] (fold-fn index (not hide)))}
-        (if hide "- " "+ ")]
+        (if hide "+ " "- ")]
        [:span name]
        [navigation-child children hide]])))
 
@@ -37,9 +38,25 @@
 (defn home-page []
   [:h1 "Home page"])
 
+(defn not-found []
+  [:h2 "Page not found"])
+
+(defn loading []
+  [:div.loading "Loading..."])
+
+(def url-component-mapping
+  {:index [home-page]
+   :settings|user [settings/settings settings/user]
+   :settings|user|add [settings/settings settings/add-user]})
+
+(defn url->component [k]
+  (get url-component-mapping k [not-found]))
+
 (defn layout []
-  (let [route (rf/subscribe [:route])]
+  (let [{:keys [handler]} (deref (rf/subscribe [:route]))
+        loading? (deref (rf/subscribe [:loading?]))]
     [:div.container
      [navigation]
      [:div.playground
-      [home-page]]]))
+      (url->component handler)]
+     (when loading? [loading])]))

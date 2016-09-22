@@ -19,7 +19,8 @@
                  [org.clojure/data.zip "0.1.2"]
                  [clojurewerkz/spyglass "1.1.0"]
                  [re-frame "0.8.0"]
-                 [bidi "2.0.10"]]
+                 [bidi "2.0.10"]
+                 [day8.re-frame/http-fx "0.0.4"]]
 
   :plugins [[lein-cljsbuild "1.1.4"]
             [lein-figwheel "0.5.7"]
@@ -49,24 +50,28 @@
   {:builds [{:id           "dev"
              :source-paths ["src/cljs"]
              :figwheel     {:on-jsload "tools.core/main"}
-             :compiler     {:main                 tools.core
-                            :preloads             [devtools.preload]
-                            :asset-path           "js/out"
-                            :output-to            "resources/public/js/main.js"
-                            :output-dir           "resources/public/js/out"
-                            :optimizations        :none
-                            :pretty-print         true
-                            :source-map           true
-                            :source-map-timestamp true}}
+             :compiler     {:main          tools.core
+                            :preloads      [devtools.preload]
+                            :asset-path    "js/out"
+                            :output-to     "resources/public/js/main.js"
+                            :output-dir    "resources/public/js/out"
+                            :optimizations :none
+                            :pretty-print  true
+                            :source-map    true}}
             {:id           "min"
              :source-paths ["src/cljs"]
-             :compiler     {:main                 tools.core
-                            :output-to            "resources/public/js/main.js"
-                            :optimizations :advanced}}]}
+             :compiler     {:main          tools.core
+                            :output-to     "resources/public/js/main.js"
+                            :optimizations :advanced
+                            :pretty-print  false}}]}
 
   :sass {:exec "C:/Ruby23-x64/bin/sass.bat"
          :input "src/sass/style.scss"
          :output "resources/public/css/style.css"}
 
   :figwheel {:server-port 3449
-             :css-dirs    ["resources/public/css"]})
+             :css-dirs    ["resources/public/css"]}
+
+  :clean-targets ^{:protect false} ["resources/public/js/out"
+                                    "resources/public/js/main.js"
+                                    "target"])

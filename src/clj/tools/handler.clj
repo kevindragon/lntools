@@ -33,4 +33,4 @@
       (wrap-defaults
         (-> site-defaults
             (assoc-in [:security :anti-forgery] false)))
-      (wrap-restful-format :formats [:json :json-kw :html])))
+      (wrap-restful-format :formats [:json :html])))
