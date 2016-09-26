@@ -34,7 +34,7 @@
   {:uberjar {:aot          :all
              :source-paths ["env/prod"]
              :uberjar-name "tools.jar"
-             ;;:prep-tasks   ["sassi" ["cljsbuild" "once" "min"]]
+             :prep-tasks   [["cljsbuild" "once" "min"]]
              }
 
    :dev     {:source-paths ["env/dev"]
