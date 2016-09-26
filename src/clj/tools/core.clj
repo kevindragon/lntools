@@ -8,7 +8,7 @@
 
 (defn start-server
   ([] (start-server false))
-  ([join] (run-jetty handles {:port 3001
+  ([join] (run-jetty handles {:port 3000
                               :join? join})))
 
 (defn -main [& args]

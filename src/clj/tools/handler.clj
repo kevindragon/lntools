@@ -18,6 +18,9 @@
 (def app-routes
   (routes
     (GET "/" [] (slurp (io/resource "public/index.html")))
+    (GET "/index.html" [] "404")
+    (GET "/cljs" [] (slurp (io/resource "public/cljs.html")))
+    (GET "/cljs.html" [] "404")
     (GET "/login" [] (slurp (io/resource "public/login.html")))
     (POST "/login" {:keys [params]} (user/login params))
     (GET "/logout" [] (user/logout))
