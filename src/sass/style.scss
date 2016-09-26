@@ -9,6 +9,12 @@ $gap20: 20px;
   }
 }
 
+@for $i from 1 through 5 {
+  .left-#{$i * 10} {
+    margin-left: $i * 10px;
+  }
+}
+
 * {
   font-size: 100%;
   box-sizing: border-box;

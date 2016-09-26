@@ -9,8 +9,13 @@
 
 (def routes
   ["" {#"/?"        :index
-       "/settings/" {"user" {#"/?"  :settings|user
-                             "/add" :settings|user|add}}}
+       "/settings/" {"user"     {#"/?"  :settings|user
+                                 "/add" :settings|user|add}
+                     "database" {#"/?" :settings|database
+                                 "/add" :settings|database|add}
+                     "db-sync"  {#"/?"  :settings|db-sync
+                                 "/add" :settings|db-sync|add}}
+       "/database/" {"sync" {#"/?" :database|sync}}}
    [true :not-found]])
 
 (def history

@@ -6,13 +6,14 @@
             [tools.settings.dah :as dah-handle]
             [tools.settings.memcache :as mc]
             [tools.settings.user :as user]
-            [tools.settings.data-gap :as data-gap]))
+            [tools.settings.data-gap :as data-gap]
+            [tools.settings.db-sync :as db-sync]))
 
 (def routes
   (c/routes
     (c/GET "/databases" [] (databases))
-    (c/POST "/database" request (database-add request))
-    (c/DELETE "/database" request (database-delete request))
+    (c/PUT "/database" {:keys [params]} (database-add params))
+    (c/DELETE "/database" {:keys [params]} (database-delete params))
 
     (c/GET "/dih" [] (dih-handle/dihs))
     (c/POST "/dih" request (dih-handle/dih-add request))
@@ -33,5 +34,9 @@
     (c/GET "/data_gap" [] (data-gap/data-gaps))
     (c/PUT "/data_gap" {:keys [params]} (data-gap/add params))
     (c/DELETE "/data_gap" {:keys [params]} (data-gap/delete params))
+
+    (c/GET "/db-sync" [] (db-sync/db-sync))
+    (c/PUT "/db-sync" {:keys [params]} (db-sync/db-sync-add params))
+    (c/DELETE "/db-sync" {:keys [params]} (db-sync/db-sync-delete params))
 
     ))

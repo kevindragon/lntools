@@ -1,4 +1,4 @@
-(defproject tools "0.1.1"
+(defproject tools "0.1.2"
 
   :description "Tools"
   :url "http://example.com/FIXME"

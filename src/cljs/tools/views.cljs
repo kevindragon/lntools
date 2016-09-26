@@ -1,6 +1,7 @@
 (ns tools.views
   (:require [re-frame.core :as rf]
-            [tools.views.settings :as settings]))
+            [tools.views.settings :as settings]
+            [tools.views.database :as database]))
 
 (enable-console-print!)
 
@@ -45,9 +46,14 @@
   [:div.loading "Loading..."])
 
 (def url-component-mapping
-  {:index [home-page]
-   :settings|user [settings/settings settings/user]
-   :settings|user|add [settings/settings settings/add-user]})
+  {:index                 [home-page]
+   :settings|user         [settings/settings settings/user]
+   :settings|user|add     [settings/settings settings/add-user]
+   :settings|database     [settings/settings settings/database]
+   :settings|database|add [settings/settings settings/add-database]
+   ;;:settings|db-sync      [settings/settings settings/db-sync]
+   ;;:settings|db-sync|add  [settings/settings settings/add-db-sync]
+   :database|sync         [database/layout database/sync]})
 
 (defn url->component [k]
   (get url-component-mapping k [not-found]))

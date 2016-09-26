@@ -17,6 +17,21 @@
     (:loading? db)))
 
 (rf/reg-sub
-  :data-settings-users
+  :data/settings-users
   (fn [db _]
     (get-in db [:data :settings :users])))
+
+(rf/reg-sub
+  :data/settings-databases
+  (fn [db _]
+    (get-in db [:data :settings :databases])))
+
+(rf/reg-sub
+  :data/settings-db-sync
+  (fn [db _]
+    (get-in db [:data :settings :dbs-sync])))
+
+(rf/reg-sub
+  :data/database-tables
+  (fn [db _]
+    (get-in db [:data :database :tables])))

@@ -42,6 +42,20 @@
 (defn get-db [id]
   (let [opt (first (database-by-id id))]
     {:subprotocol "mysql"
-     :subname     (str "//" (opt :host) "/" (opt :dbname))
+     :subname     (str "//" (opt :host) "/" (opt :dbname) "?"
+                       (clojure.string/join
+                         "&"
+                         ["zeroDateTimeBehavior=convertToNull"
+                          "characterEncoding=utf8"]))
      :user        (opt :username)
      :password    (opt :password)}))
+
+(defn db-sync-by-id [id]
+  (j/query db ["select * from databases_sync where id = ?" id]))
+
+(defn get-db-sync-spec [id]
+  (let [opt (first (db-sync-by-id id))]
+    {:subprotocol "mysql"
+     :subname     (str "//" (:host opt) "/" (:dbname opt))
+     :user        (:username opt)
+     :password    (:password opt)}))

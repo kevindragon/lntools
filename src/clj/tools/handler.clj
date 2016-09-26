@@ -10,6 +10,7 @@
             [tools.settings.route :as settings-route]
             [tools.autonomy.route :as autonomy-route]
             [tools.memcache.route :as memcache-route]
+            [tools.database.route :as database-route]
             [tools.middleware :refer [wrap-auth]]
             [tools.user.core :as user]))
 
@@ -24,6 +25,7 @@
     (context "/settings" [] settings-route/routes)
     (context "/autonomy" [] autonomy-route/routes)
     (context "/memcache" [] memcache-route/routes)
+    (context "/database" [] database-route/routes)
     (route/not-found "404")))
 
 (def handles

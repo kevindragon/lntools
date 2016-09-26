@@ -9,6 +9,8 @@
                              :href "#/settings/user"}
                             {:name "Database"
                              :href "#/settings/database"}
+                            {:name "DB sync"
+                             :href "#/settings/db-sync"}
                             {:name "Dih"
                              :href "#/settings/dih"}
                             {:name "Dah"
@@ -23,6 +25,10 @@
                              :href "#/hyperlink/status"}
                             {:name "Prepare"
                              :href "#/hyperlink/prepare"}]}
+                {:name     "Database"
+                 :hide?    true
+                 :children [{:name "Sync"
+                             :href "#/database/sync"}]}
                 {:name     "Autonomy"
                  :hide?    true
                  :children [{:name "Dih"
@@ -34,4 +40,8 @@
                 {:name "Memcache"
                  :href "#/memcache"}]
    :ajax-error nil
-   :data       {:settings {:users nil}}})
+   :data       {:settings {:users     nil
+                           :databases nil
+                           :dbs-sync  nil}
+                :databases nil
+                :database {:tables nil}}})
