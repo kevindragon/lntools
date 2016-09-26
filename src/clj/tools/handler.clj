@@ -5,6 +5,7 @@
             [ring.middleware.format :refer [wrap-restful-format]]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
             [ring.middleware.anti-forgery :refer [wrap-anti-forgery]]
+            [ring.middleware.cookies :refer [wrap-cookies]]
             [clojure.java.io :as io]
             [tools.hyperlink.route :as hyperlink-route]
             [tools.settings.route :as settings-route]
@@ -33,8 +34,9 @@
 
 (def handles
   (-> #'app-routes
-      wrap-reload
-      wrap-auth
+      (wrap-reload)
+      (wrap-auth)
+      (wrap-cookies)
       (wrap-defaults
         (-> site-defaults
             (assoc-in [:security :anti-forgery] false)))

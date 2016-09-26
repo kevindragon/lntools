@@ -22,9 +22,9 @@
                  [bidi "2.0.10"]
                  [day8.re-frame/http-fx "0.0.4"]]
 
-  :plugins [[lein-cljsbuild "1.1.4"]
+  :plugins [[lein-cljsbuild "1.1.4" :exclude [org.clojure/clojurescript]]
             [lein-figwheel "0.5.7"]
-            [lein-sassi "0.1.0"]]
+            #_[lein-sassi "0.1.0"]]
 
   :source-paths ["src/clj"]
   :target-path "target/%s/"
@@ -34,7 +34,7 @@
   {:uberjar {:aot          :all
              :source-paths ["env/prod"]
              :uberjar-name "tools.jar"
-             :prep-tasks   [["cljsbuild" "once" "min"]]
+             :prep-tasks   [["cljsbuild" "once" "min"] ["compile"]]
              }
 
    :dev     {:source-paths ["env/dev"]
