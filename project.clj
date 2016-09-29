@@ -23,7 +23,7 @@
 
   :plugins [[lein-cljsbuild "1.1.4" :exclude [org.clojure/clojurescript]]
             [lein-figwheel "0.5.7"]
-            [lein-sassi "0.1.0"]]
+            #_[lein-sassi "0.1.0"]]
 
   :source-paths ["src/clj"]
   :target-path "target/%s/"
