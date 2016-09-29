@@ -9,6 +9,12 @@ $gap20: 20px;
   }
 }
 
+@for $i from 1 through 20 {
+  .top-#{$i * 5} {
+    margin-top: $i * 5px;
+  }
+}
+
 @for $i from 1 through 5 {
   .left-#{$i * 10} {
     margin-left: $i * 10px;

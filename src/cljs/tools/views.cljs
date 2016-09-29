@@ -1,7 +1,9 @@
 (ns tools.views
   (:require [re-frame.core :as rf]
             [tools.views.settings :as settings]
-            [tools.views.database :as database]))
+            [tools.views.database :as database]
+            [tools.views.hyperlink :as hyperlink]
+            [tools.views.memcache :as memcache]))
 
 (enable-console-print!)
 
@@ -51,7 +53,18 @@
    :settings|user|add     [settings/settings settings/add-user]
    :settings|database     [settings/settings settings/database]
    :settings|database|add [settings/settings settings/add-database]
-   :database|sync         [database/layout database/sync]})
+   :settings|dih          [settings/settings settings/dih]
+   :settings|dih|add      [settings/settings settings/add-dih]
+   :settings|dah          [settings/settings settings/dah]
+   :settings|dah|add      [settings/settings settings/add-dah]
+   :settings|memcache     [settings/settings settings/memcache]
+   :settings|memcache|add [settings/settings settings/add-memcache]
+   :settings|data-gap     [settings/settings settings/data-gap]
+   :settings|data-gap|add [settings/settings settings/add-data-gap]
+   :database|sync         [database/layout database/sync]
+   :hyperlink|status      [hyperlink/layout hyperlink/status]
+   :hyperlink|prepare     [hyperlink/layout hyperlink/prepare]
+   :memcache|clear        [memcache/layout memcache/clear]})
 
 (defn url->component [k]
   (get url-component-mapping k [not-found]))

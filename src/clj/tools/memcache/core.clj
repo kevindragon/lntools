@@ -4,8 +4,8 @@
 
 
 (defn clear [{:keys [id]}]
-  (let [id (Integer/parseInt id)
-        memcache (db/memcache-by-id id)
+  (println "id" id (class id))
+  (let [memcache (db/memcache-by-id id)
         tmc (mc/text-connection
               (str (memcache :host) ":" (memcache :port)))
         ok? (mc/flush tmc)]

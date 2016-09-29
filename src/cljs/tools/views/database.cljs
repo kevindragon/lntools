@@ -23,14 +23,14 @@
                                   (when (not (= id ""))
                                     (get-table id)
                                     (reset! from id))))}
-          [:option " -- "]
+          [:option {:values ""} " -- "]
           (for [[idx db] (map-indexed vector databases)]
             (let [{:keys [id name host dbname]} db]
               ^{:key idx} [:option {:value id} (str name " - " host "/" dbname)]))]]
         [:div.row
          [:div "To: "]
          [:select {:on-change #(reset! to (-> % .-target .-value))}
-          [:option " -- "]
+          [:option {:values ""} " -- "]
           (for [[idx db] (map-indexed vector databases)]
             (let [{:keys [id name host dbname]} db]
               ^{:key idx} [:option {:value id} (str name " - " host "/" dbname)]))]]
@@ -38,7 +38,7 @@
          [:div "Table:"]
          [:div
           [:select {:on-change #(reset! table (-> % .-target .-value))}
-           [:option " -- "]
+           [:option {:values ""} " -- "]
            (for [[idx table] (map-indexed vector tables)]
              ^{:key idx} [:option {:value table} table])]]]
         [:div.row

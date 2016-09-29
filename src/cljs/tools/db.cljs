@@ -9,8 +9,6 @@
                              :href "#/settings/user"}
                             {:name "Database"
                              :href "#/settings/database"}
-                            {:name "DB sync"
-                             :href "#/settings/db-sync"}
                             {:name "Dih"
                              :href "#/settings/dih"}
                             {:name "Dah"
@@ -40,8 +38,13 @@
                 {:name "Memcache"
                  :href "#/memcache"}]
    :ajax-error nil
-   :data       {:settings {:users     nil
-                           :databases nil
-                           :dbs-sync  nil}
+   :data       {:settings  {:users     nil
+                            :databases nil
+                            :dbs-sync  nil
+                            :dihs      nil
+                            :dahs      nil
+                            :memcaches nil
+                            :data-gaps nil}
                 :databases nil
-                :database {:tables nil}}})
+                :database  {:tables nil}
+                :hyperlink {:status nil}}})
