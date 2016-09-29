@@ -11,7 +11,8 @@
     tables))
 
 (defn split-ids [ids]
-  (clojure.string/split ids #"[\r\n, ]"))
+  (filter #(re-matches #"[0-9]+" %)
+          (clojure.string/split ids #"[\r\n, ]")))
 
 (defn sync-data [{:keys [from to table ids]}]
   (let [from-db-spec (db/get-db from)
@@ -28,6 +29,7 @@
                   (j/query
                     from-db-spec
                     [(str "select * from " table " where " primary-key " = ?") id]))]
-        (j/delete! to-db-spec (keyword table) [(str primary-key " = ?") id])
-        (j/insert! to-db-spec (keyword table) row)))
+        (when (not-empty row)
+          (j/delete! to-db-spec (keyword table) [(str primary-key " = ?") id])
+          (j/insert! to-db-spec (keyword table) row))))
     {:body {:status "ok"}}))

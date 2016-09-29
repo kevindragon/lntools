@@ -10,7 +10,6 @@
                  [ring-middleware-format "0.7.0"]
                  [ring/ring-defaults "0.2.1"]
                  [ring/ring-anti-forgery "1.0.1"]
-                 [environ "1.0.3"]
                  [org.clojure/java.jdbc "0.6.1"]
                  [org.xerial/sqlite-jdbc "3.8.11.2"]
                  [mysql/mysql-connector-java "5.1.35"]

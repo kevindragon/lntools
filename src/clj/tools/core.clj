@@ -1,6 +1,5 @@
 (ns tools.core
   (:require [ring.adapter.jetty :refer [run-jetty]]
-            [environ.core :refer [env]]
             [tools.handler :refer [handles]]
             [tools.migrate :as migrate]
             [tools.help :as help])

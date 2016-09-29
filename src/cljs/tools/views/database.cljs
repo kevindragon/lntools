@@ -20,8 +20,9 @@
          [:div "From: "]
          [:select {:on-change (fn [e]
                                 (let [id (-> e .-target .-value)]
-                                  (get-table id)
-                                  (reset! from id)))}
+                                  (when (not (= id ""))
+                                    (get-table id)
+                                    (reset! from id))))}
           [:option " -- "]
           (for [[idx db] (map-indexed vector databases)]
             (let [{:keys [id name host dbname]} db]

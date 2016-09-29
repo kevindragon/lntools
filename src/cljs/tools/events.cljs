@@ -154,32 +154,4 @@
 (rf/reg-event-db
   :database-sync-data-ok
   (fn [db data]
-    (println "database sync data ok")
-    (println data)
-    db))
-
-#_(rf/reg-event-db
-  :update-settings-db-sync
-  (fn [db [_ v]]
-    (-> db
-        (assoc :loading? false)
-        (assoc-in [:data :settings :dbs-sync] v))))
-
-#_(rf/reg-event-fx
-  :ajax/settings-get-db-sync
-  (fn [{db :db} _]
-    {:db (assoc db :loading? true)
-     :http-xhrio (wrap-default-xhr
-                   {:method :get
-                    :uri "/settings/db-sync"
-                    :on-success [:update-settings-db-sync]})}))
-
-#_(rf/reg-event-fx
-  :ajax/settings-del-db-sync
-  (fn [{db :db} [_ id]]
-    {:db (assoc db :loading? true)
-     :http-xhrio (wrap-default-xhr
-                   {:method :delete
-                    :uri "/settings/db-sync"
-                    :params {:id id}
-                    :on-success [:ajax/settings-get-db-sync]})}))
+    (assoc db :loading? false)))

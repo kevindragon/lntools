@@ -31,10 +31,10 @@
   (let [navs (rf/subscribe [:nav])]
     [:div.nav
      [:ul
-      [:li [:a {:href "#/"} "Home"]]
+      [:li [:a {:href "/"} "Home"]]
       (for [[index nav] (map-indexed vector @navs)]
         ^{:key index} [navigation-top index nav])
-      [:li [:a {:href "#/sign-out"} "Sign out"]]]]))
+      [:li [:a {:href "/logout"} "Sign out"]]]]))
 
 (defn home-page []
   [:h1 "Home page"])
@@ -51,8 +51,6 @@
    :settings|user|add     [settings/settings settings/add-user]
    :settings|database     [settings/settings settings/database]
    :settings|database|add [settings/settings settings/add-database]
-   ;;:settings|db-sync      [settings/settings settings/db-sync]
-   ;;:settings|db-sync|add  [settings/settings settings/add-db-sync]
    :database|sync         [database/layout database/sync]})
 
 (defn url->component [k]
