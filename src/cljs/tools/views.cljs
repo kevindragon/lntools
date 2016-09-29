@@ -3,7 +3,8 @@
             [tools.views.settings :as settings]
             [tools.views.database :as database]
             [tools.views.hyperlink :as hyperlink]
-            [tools.views.memcache :as memcache]))
+            [tools.views.memcache :as memcache]
+            [tools.views.autonomy :as autonomy]))
 
 (enable-console-print!)
 
@@ -64,7 +65,8 @@
    :database|sync         [database/layout database/sync]
    :hyperlink|status      [hyperlink/layout hyperlink/status]
    :hyperlink|prepare     [hyperlink/layout hyperlink/prepare]
-   :memcache|clear        [memcache/layout memcache/clear]})
+   :memcache|clear        [memcache/layout memcache/clear]
+   :autonomy|dih          [autonomy/layout autonomy/dih]})
 
 (defn url->component [k]
   (get url-component-mapping k [not-found]))

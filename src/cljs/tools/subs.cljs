@@ -60,3 +60,8 @@
   :data/hyperlink-status
   (fn [db _]
     (get-in db [:data :hyperlink :status])))
+
+(rf/reg-sub
+  :data/autonomy-dih-status
+  (fn [db _]
+    (get-in db [:data :autonomy :dih])))

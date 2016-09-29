@@ -47,4 +47,6 @@
                             :data-gaps nil}
                 :databases nil
                 :database  {:tables nil}
-                :hyperlink {:status nil}}})
+                :hyperlink {:status nil}
+                :autonomy {:dih nil
+                           :dah nil}}})

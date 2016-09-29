@@ -26,7 +26,9 @@
        "/database/" {"sync" {#"/?" :database|sync}}
        "/hyperlink/" {"status" {#"/?" :hyperlink|status}
                       "prepare" {#"/?" :hyperlink|prepare}}
-       "/memcache" :memcache|clear}
+       "/memcache" :memcache|clear
+       "/autonomy" {"/dih" :autonomy|dih
+                    "/dah" :autonomy|dah}}
    [true :not-found]])
 
 (def history

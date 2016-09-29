@@ -347,3 +347,22 @@
   (fn [db _]
     (js/alert "Update ok")
     (assoc db :loading? false)))
+
+;;; Autonomy
+(rf/reg-event-fx
+  :ajax/autonomy-get-dih
+  (fn [{db :db} _]
+    {:db (assoc db :loading? true)
+     :http-xhrio (ajax-get {:uri "/autonomy/dih"
+                            :on-success [:ajax/autonomy-get-dih-ok]})}))
+
+
+(rf/reg-event-db
+  :ajax/autonomy-get-dih-ok
+  (fn [db [_ v]]
+    (-> db
+        (assoc :loading? false)
+        (assoc-in [:data :autonomy :dih] v))))
+
+
+
