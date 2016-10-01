@@ -9,6 +9,18 @@ $gap20: 20px;
   }
 }
 
+@for $i from 1 through 20 {
+  .top-#{$i * 5} {
+    margin-top: $i * 5px;
+  }
+}
+
+@for $i from 1 through 5 {
+  .left-#{$i * 10} {
+    margin-left: $i * 10px;
+  }
+}
+
 * {
   font-size: 100%;
   box-sizing: border-box;
@@ -52,6 +64,16 @@ table.table {
   font-size: 0.85em;
 }
 
+.loading {
+  position: fixed;
+  width: 100px;
+  padding: 5px 10px;
+  top: 0;
+  left: 45%;
+  background-color: yellow;
+  border-radius: 3px;
+}
+
 #app {
   padding: 20px;
 }
@@ -59,7 +81,7 @@ table.table {
 .container {
   display: flex;
   .nav {
-    flex: 0 100px;
+    flex: 0 120px;
     line-height: 1.5em;
     padding: $gap10;
     background-color: $bgGray;

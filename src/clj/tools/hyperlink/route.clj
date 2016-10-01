@@ -5,9 +5,6 @@
 
 (def routes
   (c/routes
-    (c/GET "/status" [] (hl/status))
-
-    (c/POST "/prepare" {:keys [params]} (hl/prepare params))
-
-    ))
+    (c/GET "/status" {:keys [params]} (hl/status params))
+    (c/POST "/prepare" {:keys [params]} (hl/prepare params))))
 

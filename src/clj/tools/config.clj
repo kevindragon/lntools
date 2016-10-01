@@ -1,6 +1,5 @@
 (ns tools.config
-  (:require [environ.core :refer [env]]
-            [ragtime.jdbc :as jdbc]
+  (:require [ragtime.jdbc :as jdbc]
             [clj-http.conn-mgr :as conn-mgr]
             [tools.env :as e]))
 

@@ -10,7 +10,4 @@
     (c/GET "/dih" [] (dih/status))
     (c/GET "/dah" [] (dah/status))
     (c/POST "/dah" {:keys [params]} (dah/engine-management params))
-
-    (c/GET "/data_gap/settings" [] (data-gap/settings))
-    (c/GET "/data_gap/calc" {:keys [params]} (data-gap/calc params))
-    ))
+    (c/POST "/data-gap" {:keys [params]} (data-gap/calc params))))

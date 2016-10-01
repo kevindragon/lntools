@@ -25,23 +25,13 @@
       db
       ["select * from memcache where id = ?" id])))
 
-(defn lnc-db []
-  (let [opt (first (databases-by-name "lnc"))]
-    {:subprotocol "mysql"
-     :subname     (str "//" (opt :host) "/" (opt :dbname))
-     :user        (opt :username)
-     :password    (opt :password)}))
-
-(defn stg-db []
-  (let [opt (first (databases-by-name "stg"))]
-    {:subprotocol "mysql"
-     :subname     (str "//" (opt :host) "/" (opt :dbname))
-     :user        (opt :username)
-     :password    (opt :password)}))
-
 (defn get-db [id]
   (let [opt (first (database-by-id id))]
     {:subprotocol "mysql"
-     :subname     (str "//" (opt :host) "/" (opt :dbname))
+     :subname     (str "//" (opt :host) "/" (opt :dbname) "?"
+                       (clojure.string/join
+                         "&"
+                         ["zeroDateTimeBehavior=convertToNull"
+                          "characterEncoding=utf8"]))
      :user        (opt :username)
      :password    (opt :password)}))
