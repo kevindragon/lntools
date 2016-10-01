@@ -356,7 +356,6 @@
      :http-xhrio (ajax-get {:uri "/autonomy/dih"
                             :on-success [:ajax/autonomy-get-dih-ok]})}))
 
-
 (rf/reg-event-db
   :ajax/autonomy-get-dih-ok
   (fn [db [_ v]]
@@ -364,5 +363,45 @@
         (assoc :loading? false)
         (assoc-in [:data :autonomy :dih] v))))
 
+(rf/reg-event-fx
+  :ajax/autonomy-get-dah
+  (fn [{db :db} _]
+    {:db (assoc db :loading? true)
+     :http-xhrio (ajax-get {:uri "/autonomy/dah"
+                            :on-success [:ajax/autonomy-get-dah-ok]})}))
 
+(rf/reg-event-db
+  :ajax/autonomy-get-dah-ok
+  (fn [db [_ v]]
+    (-> db
+        (assoc :loading? false)
+        (assoc-in [:data :autonomy :dah] v))))
 
+(rf/reg-event-fx
+  :ajax/autonomy-change-dah-status
+  (fn [{db :db} [_ params]]
+    {:db (assoc db :loading? true)
+     :http-xhrio (ajax-post {:uri "/autonomy/dah"
+                             :params params
+                             :on-success [:ajax/autonomy-change-dah-status-ok]})}))
+
+(rf/reg-event-db
+  :ajax/autonomy-change-dah-status-ok
+  (fn [db _]
+    (-> db
+        (assoc :loading? false))))
+
+(rf/reg-event-fx
+  :ajax/autonomy-calc-data-gap
+  (fn [{db :db} [_ params]]
+    {:db (assoc db :loading? true)
+     :http-xhrio (ajax-post {:uri "/autonomy/data-gap"
+                             :params params
+                             :on-success [:ajax/autonomy-calc-data-gap-ok]})}))
+
+(rf/reg-event-db
+  :ajax/autonomy-calc-data-gap-ok
+  (fn [db [_ v]]
+    (-> db
+        (assoc :loading? false)
+        (assoc-in [:data :autonomy :gaps] v))))

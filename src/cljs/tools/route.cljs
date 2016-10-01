@@ -8,27 +8,28 @@
 (enable-console-print!)
 
 (def routes
-  ["" {#"/?"        :index
-       "/settings/" {"user"     {#"/?"  :settings|user
-                                 "/add" :settings|user|add}
-                     "database" {#"/?"  :settings|database
-                                 "/add" :settings|database|add}
-                     "db-sync"  {#"/?"  :settings|db-sync
-                                 "/add" :settings|db-sync|add}
-                     "dih"      {#"/?"  :settings|dih
-                                 "/add" :settings|dih|add}
-                     "dah"      {#"/?"  :settings|dah
-                                 "/add" :settings|dah|add}
-                     "memcache" {#"/?"  :settings|memcache
-                                 "/add" :settings|memcache|add}
-                     "data-gap" {#"/?"  :settings|data-gap
-                                 "/add" :settings|data-gap|add}}
-       "/database/" {"sync" {#"/?" :database|sync}}
-       "/hyperlink/" {"status" {#"/?" :hyperlink|status}
+  ["" {#"/?"         :index
+       "/settings/"  {"user"     {#"/?"  :settings|user
+                                  "/add" :settings|user|add}
+                      "database" {#"/?"  :settings|database
+                                  "/add" :settings|database|add}
+                      "db-sync"  {#"/?"  :settings|db-sync
+                                  "/add" :settings|db-sync|add}
+                      "dih"      {#"/?"  :settings|dih
+                                  "/add" :settings|dih|add}
+                      "dah"      {#"/?"  :settings|dah
+                                  "/add" :settings|dah|add}
+                      "memcache" {#"/?"  :settings|memcache
+                                  "/add" :settings|memcache|add}
+                      "data-gap" {#"/?"  :settings|data-gap
+                                  "/add" :settings|data-gap|add}}
+       "/database/"  {"sync" {#"/?" :database|sync}}
+       "/hyperlink/" {"status"  {#"/?" :hyperlink|status}
                       "prepare" {#"/?" :hyperlink|prepare}}
-       "/memcache" :memcache|clear
-       "/autonomy" {"/dih" :autonomy|dih
-                    "/dah" :autonomy|dah}}
+       "/memcache"   :memcache|clear
+       "/autonomy"   {"/dih"      :autonomy|dih
+                      "/dah"      :autonomy|dah
+                      "/data-gap" :autonomy|data-gap}}
    [true :not-found]])
 
 (def history

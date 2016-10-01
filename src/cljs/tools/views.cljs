@@ -66,7 +66,10 @@
    :hyperlink|status      [hyperlink/layout hyperlink/status]
    :hyperlink|prepare     [hyperlink/layout hyperlink/prepare]
    :memcache|clear        [memcache/layout memcache/clear]
-   :autonomy|dih          [autonomy/layout autonomy/dih]})
+   :autonomy|dih          [autonomy/layout autonomy/dih]
+   :autonomy|dah          [autonomy/layout autonomy/dah]
+   :autonomy|data-gap     [autonomy/layout autonomy/data-gap]
+   })
 
 (defn url->component [k]
   (get url-component-mapping k [not-found]))

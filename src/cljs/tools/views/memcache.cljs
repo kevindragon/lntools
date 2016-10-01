@@ -14,7 +14,8 @@
                       @mcs)]
         [:div.clear
          [:h2 "Memcache management"]
-         [table ["id" "name" "host" "port" ""] rows]]))))
+         [table {:head ["id" "name" "host" "port" ""]
+                 :body  rows}]]))))
 
 (defn layout [child]
   [:div.memcache [child]])

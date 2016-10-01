@@ -65,3 +65,13 @@
   :data/autonomy-dih-status
   (fn [db _]
     (get-in db [:data :autonomy :dih])))
+
+(rf/reg-sub
+  :data/autonomy-dah-status
+  (fn [db _]
+    (get-in db [:data :autonomy :dah])))
+
+(rf/reg-sub
+  :data/autonomy-data-gaps
+  (fn [db _]
+    (get-in db [:data :autonomy :gaps])))

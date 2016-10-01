@@ -49,4 +49,5 @@
                 :database  {:tables nil}
                 :hyperlink {:status nil}
                 :autonomy {:dih nil
-                           :dah nil}}})
+                           :dah nil
+                           :gaps nil}}})

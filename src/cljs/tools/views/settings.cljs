@@ -19,7 +19,8 @@
                     users)]
       [:div.user
        [:h2 "Users"]
-       [table ["id" "name" "passport" ""] rows]
+       [table {:head ["id" "name" "passport" ""]
+               :body rows}]
        (when canAdd
          [:p
           [:a {:href "#/settings/user/add"} "Add user"]])])))
@@ -30,12 +31,12 @@
     (fn []
       [:div.add-user
        [:h2 "Add a user"]
-       [table [["name:" [:input {:type "text"
-                                 :on-change #(reset! name (-> % .-target .-value))
-                                 :value @name}]]
-               ["passport:" [:input {:type "text"
-                                     :on-change #(reset! passport (-> % .-target .-value))
-                                     :value @passport}]]]]
+       [table {:body [["name:" [:input {:type "text"
+                                        :on-change #(reset! name (-> % .-target .-value))
+                                        :value @name}]]
+                      ["passport:" [:input {:type "text"
+                                            :on-change #(reset! passport (-> % .-target .-value))
+                                            :value @passport}]]]}]
        [:p
         [:button {:on-click #(rf/dispatch [:ajax/settings-add-user @name @passport])}
          "Add"]
@@ -52,7 +53,8 @@
                                 "Delete"]])) databases)]
       [:div.settings-database
        [:h2 "Databases"]
-       [table ["id" "name" "host" "username" "password" "dbname" ""] rows]
+       [table {:head ["id" "name" "host" "username" "password" "dbname" ""]
+               :body rows}]
        [:p
         [:a {:href "#/settings/database/add"} "Add database"]]])))
 
@@ -65,22 +67,22 @@
     (fn []
       [:div.settings-db-sync
        [:h2 "Add Database sync"]
-       [table [["name" [:input {:type "text"
-                                :value @name
-                                :on-change #(reset! name
-                                                    (-> % .-target .-value))}]]
-               ["host" [:input {:value @host
-                                :on-change #(reset! host
-                                                    (-> % .-target .-value))}]]
-               ["username" [:input {:value @username
-                                    :on-change #(reset! username
-                                                        (-> % .-target .-value))}]]
-               ["password" [:input {:value @password
-                                    :on-change #(reset! password
-                                                        (-> % .-target .-value))}]]
-               ["dbname" [:input {:value @dbname
-                                  :on-change #(reset! dbname
-                                                      (-> % .-target .-value))}]]]]
+       [table {:body [["name" [:input {:type "text"
+                                       :value @name
+                                       :on-change #(reset! name
+                                                           (-> % .-target .-value))}]]
+                      ["host" [:input {:value @host
+                                       :on-change #(reset! host
+                                                           (-> % .-target .-value))}]]
+                      ["username" [:input {:value @username
+                                           :on-change #(reset! username
+                                                               (-> % .-target .-value))}]]
+                      ["password" [:input {:value @password
+                                           :on-change #(reset! password
+                                                               (-> % .-target .-value))}]]
+                      ["dbname" [:input {:value @dbname
+                                         :on-change #(reset! dbname
+                                                             (-> % .-target .-value))}]]]}]
        [:p
         [:button {:on-click #(rf/dispatch
                               [:ajax/settings-add-database
@@ -103,7 +105,8 @@
                     dihs)]
       [:div.dih
        [:h2 "Dih list"]
-       [table ["id" "name" "host" "port" ""] rows]
+       [table {:head ["id" "name" "host" "port" ""]
+               :body rows}]
        [:p
         [:a {:href "#/settings/dih/add"} "Add dih"]]])))
 
@@ -114,15 +117,15 @@
     (fn []
       [:div.dih
        [:h2 "Add dih"]
-       [table [["name" [:input {:type "text"
-                                :on-change #(reset! name (-> % .-target .-value))
-                                :value @name}]]
-               ["host" [:input {:type "text"
-                                :on-change #(reset! host (-> % .-target .-value))
-                                :value @host}]]
-               ["port" [:input {:type "text"
-                                :on-change #(reset! port (-> % .-target .-value))
-                                :value @port}]]]]
+       [table {:body [["name" [:input {:type "text"
+                                       :on-change #(reset! name (-> % .-target .-value))
+                                       :value @name}]]
+                      ["host" [:input {:type "text"
+                                       :on-change #(reset! host (-> % .-target .-value))
+                                       :value @host}]]
+                      ["port" [:input {:type "text"
+                                       :on-change #(reset! port (-> % .-target .-value))
+                                       :value @port}]]]}]
        [:p
         [:button {:on-click #(rf/dispatch
                               [:ajax/settings-add-dih
@@ -143,7 +146,8 @@
                     dahs)]
       [:div.dah
        [:h2 "Dah list"]
-       [table ["id" "name" "host" "port" ""] rows]
+       [table {:head ["id" "name" "host" "port" ""]
+               :body rows}]
        [:p
         [:a {:href "#/settings/dah/add"} "Add dah"]]])))
 
@@ -154,15 +158,15 @@
     (fn []
       [:div.dah
        [:h2 "Add dah"]
-       [table [["name" [:input {:type "text"
-                                :on-change #(reset! name (-> % .-target .-value))
-                                :value @name}]]
-               ["host" [:input {:type "text"
-                                :on-change #(reset! host (-> % .-target .-value))
-                                :value @host}]]
-               ["port" [:input {:type "text"
-                                :on-change #(reset! port (-> % .-target .-value))
-                                :value @port}]]]]
+       [table {:body [["name" [:input {:type "text"
+                                       :on-change #(reset! name (-> % .-target .-value))
+                                       :value @name}]]
+                      ["host" [:input {:type "text"
+                                       :on-change #(reset! host (-> % .-target .-value))
+                                       :value @host}]]
+                      ["port" [:input {:type "text"
+                                       :on-change #(reset! port (-> % .-target .-value))
+                                       :value @port}]]]}]
        [:p
         [:button {:on-click #(rf/dispatch
                               [:ajax/settings-add-dah
@@ -183,7 +187,8 @@
                     memcaches)]
       [:div.memcache
        [:h2 "Memcache list"]
-       [table ["id" "name" "host" "port" ""] rows]
+       [table {:head ["id" "name" "host" "port" ""]
+               :body rows}]
        [:p
         [:a {:href "#/settings/memcache/add"} "Add memcache"]]])))
 
@@ -194,15 +199,15 @@
     (fn []
       [:div.memcache
        [:h2 "Add memcache"]
-       [table [["name" [:input {:type "text"
-                                :on-change #(reset! name (-> % .-target .-value))
-                                :value @name}]]
-               ["host" [:input {:type "text"
-                                :on-change #(reset! host (-> % .-target .-value))
-                                :value @host}]]
-               ["port" [:input {:type "text"
-                                :on-change #(reset! port (-> % .-target .-value))
-                                :value @port}]]]]
+       [table {:body [["name" [:input {:type "text"
+                                       :on-change #(reset! name (-> % .-target .-value))
+                                       :value @name}]]
+                      ["host" [:input {:type "text"
+                                       :on-change #(reset! host (-> % .-target .-value))
+                                       :value @host}]]
+                      ["port" [:input {:type "text"
+                                       :on-change #(reset! port (-> % .-target .-value))
+                                       :value @port}]]]}]
        [:p
         [:button {:on-click #(rf/dispatch
                               [:ajax/settings-add-memcache
@@ -229,7 +234,8 @@
                     gaps)]
       [:div.data-gap
        [:h2 "Data gap"]
-       [table ["id" "name" "database" "dah" "autonomy db" "sql statement" ""] rows]
+       [table {:head ["id" "name" "database" "dah" "autonomy db" "sql statement" ""]
+               :body rows}]
        [:p
         [:a {:href "#/settings/data-gap/add"} "Add data gap"]]]))
   )
@@ -247,32 +253,32 @@
     (fn []
       [:div.data-gap
        [:h2 "Add data gap"]
-       [table [["name" [:input {:type "text"
-                                :on-change #(reset! name (-> % .-target .-value))
-                                :value @name}]]
-               ["database" [:select {:on-change (fn [e]
-                                                  (let [v (-> e .-target .-value)]
-                                                    (when (not (= v ""))
-                                                      (reset! database v))))}
-                            [:option {:values ""} " -- "]
-                            (for [{:keys [id name host]} db-list]
-                              ^{:key id} [:option {:value id} (str name "/" host)])]]
-               ["dah" [:select {:on-change (fn [e]
-                                             (let [v (-> e .-target .-value)]
-                                               (when (not (= v ""))
-                                                 (reset! dah v))))}
-                       [:option {:values ""} " -- "]
-                       (for [{:keys [id name host port]} dah-list]
-                         ^{:key id} [:option {:value id} (str name "/" host ":" port)])]]
-               ["autonomy db" [:input {:type "text"
-                                       :on-change #(reset! autn-db (-> % .-target .-value))
-                                       :value @autn-db}]]
-               ["sql" [:div
-                       [:textarea {:cols      60
-                                   :rows      10
-                                   :on-change #(reset! sql (-> % .-target .-value))
-                                   :value     @sql}]
-                       [:div.tips "eg.: select id, display from table where datetime_field >= ? and datetime_field <= ?"]]]]]
+       [table {:body [["name" [:input {:type "text"
+                                       :on-change #(reset! name (-> % .-target .-value))
+                                       :value @name}]]
+                      ["database" [:select {:on-change (fn [e]
+                                                         (let [v (-> e .-target .-value)]
+                                                           (when (not (= v ""))
+                                                             (reset! database v))))}
+                                   [:option {:values ""} " -- "]
+                                   (for [{:keys [id name host]} db-list]
+                                     ^{:key id} [:option {:value id} (str name "/" host)])]]
+                      ["dah" [:select {:on-change (fn [e]
+                                                    (let [v (-> e .-target .-value)]
+                                                      (when (not (= v ""))
+                                                        (reset! dah v))))}
+                              [:option {:values ""} " -- "]
+                              (for [{:keys [id name host port]} dah-list]
+                                ^{:key id} [:option {:value id} (str name "/" host ":" port)])]]
+                      ["autonomy db" [:input {:type "text"
+                                              :on-change #(reset! autn-db (-> % .-target .-value))
+                                              :value @autn-db}]]
+                      ["sql" [:div
+                              [:textarea {:cols      60
+                                          :rows      10
+                                          :on-change #(reset! sql (-> % .-target .-value))
+                                          :value     @sql}]
+                              [:div.tips "eg.: select id, display from table where datetime_field >= ? and datetime_field <= ?"]]]]}]
        [:p
         [:button {:on-click #(rf/dispatch
                               [:ajax/settings-add-data-gap

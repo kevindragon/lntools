@@ -48,14 +48,17 @@
             [:div.status-list
              [:div.column
               [:h3 "stg.opr_load_status"]
-              [table ["provider id" "status" "count"] (map vals oprLoadStatus)]]
+              [table {:head ["provider id" "status" "count"]
+                      :body (map vals oprLoadStatus)}]]
              [:div.column
               [:h3 "lnc.article"]
-              [table ["provider id" "status" "count"] (map vals article)]]
+              [table {:head ["provider id" "status" "count"]
+                      :body (map vals article)}]]
              [:div.column
               [:h3 "lnc.parallel"]
-              [table ["count"] (map vals parallel)]]]])
-         )})))
+              [table {:head ["count"]
+                      :body (map vals parallel)}]]]]))
+       })))
 
 (defn prepare []
   (rf/dispatch [:ajax/settings-get-database])
@@ -68,18 +71,18 @@
     (fn []
       [:div.prepare
        [:h2 "Prepare data"]
-       [table [["database" [:select {:on-change #(reset! db (-> % .-target .-value))}
-                            [:option {:value ""} "--"]
-                            (for [{:keys [id name host dbname]} @db-list]
-                              ^{:key id} [:option {:value id} (str name " - " host "/" dbname)])]]
-               ["provider id" [:input {:type "text"
-                                       :on-change #(reset! provider-id (-> % .-target .-value))}]]
-               ["status" [:input {:type "text"
-                                  :on-change #(reset! status (-> % .-target .-value))}]]
-               ["rows" [:input {:type "text"
-                                :on-change #(reset! rows (-> % .-target .-value))}]]
-               ["status to" [:input {:type "text"
-                                     :on-change #(reset! status-to (-> % .-target .-value))}]]]]
+       [table {:body [["database" [:select {:on-change #(reset! db (-> % .-target .-value))}
+                                   [:option {:value ""} "--"]
+                                   (for [{:keys [id name host dbname]} @db-list]
+                                     ^{:key id} [:option {:value id} (str name " - " host "/" dbname)])]]
+                      ["provider id" [:input {:type "text"
+                                              :on-change #(reset! provider-id (-> % .-target .-value))}]]
+                      ["status" [:input {:type "text"
+                                         :on-change #(reset! status (-> % .-target .-value))}]]
+                      ["rows" [:input {:type "text"
+                                       :on-change #(reset! rows (-> % .-target .-value))}]]
+                      ["status to" [:input {:type "text"
+                                            :on-change #(reset! status-to (-> % .-target .-value))}]]]}]
        [:p
         [:button {:on-click #(rf/dispatch
                               [:ajax/hyperlink-update-status
