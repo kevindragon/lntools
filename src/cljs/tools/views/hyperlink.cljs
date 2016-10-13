@@ -44,7 +44,7 @@
                 ^{:key id} [:option {:value id} (str name " - " host "/" dbname)])]]
             [:div
              [:button.top-5 {:on-click update}
-              "update"]]
+              "Go"]]
             [:div.status-list
              [:div.column
               [:h3 "stg.opr_load_status"]
