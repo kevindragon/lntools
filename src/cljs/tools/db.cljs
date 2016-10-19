@@ -26,7 +26,9 @@
                 {:name     "Database"
                  :hide?    true
                  :children [{:name "Sync"
-                             :href "#/database/sync"}]}
+                             :href "#/database/sync"}
+                            {:name "Update data"
+                             :href "#/database/update-data"}]}
                 {:name     "Autonomy"
                  :hide?    true
                  :children [{:name "Dih"
@@ -46,8 +48,9 @@
                             :memcaches nil
                             :data-gaps nil}
                 :databases nil
-                :database  {:tables nil}
+                :database  {:tables       nil
+                            :table-fields nil}
                 :hyperlink {:status nil}
-                :autonomy {:dih nil
-                           :dah nil
-                           :gaps nil}}})
+                :autonomy  {:dih  nil
+                            :dah  nil
+                            :gaps nil}}})

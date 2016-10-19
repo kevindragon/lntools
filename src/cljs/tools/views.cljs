@@ -63,6 +63,7 @@
    :settings|data-gap     [settings/settings settings/data-gap]
    :settings|data-gap|add [settings/settings settings/add-data-gap]
    :database|sync         [database/layout database/sync]
+   :database|update-data  [database/layout database/update-data]
    :hyperlink|status      [hyperlink/layout hyperlink/status]
    :hyperlink|prepare     [hyperlink/layout hyperlink/prepare]
    :memcache|clear        [memcache/layout memcache/clear]

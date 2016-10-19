@@ -23,7 +23,8 @@
                                   "/add" :settings|memcache|add}
                       "data-gap" {#"/?"  :settings|data-gap
                                   "/add" :settings|data-gap|add}}
-       "/database/"  {"sync" {#"/?" :database|sync}}
+       "/database/"  {"sync"        {#"/?" :database|sync}
+                      "update-data" :database|update-data}
        "/hyperlink/" {"status"  {#"/?" :hyperlink|status}
                       "prepare" {#"/?" :hyperlink|prepare}}
        "/memcache"   :memcache|clear

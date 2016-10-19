@@ -23,7 +23,7 @@
 
   :plugins [[lein-cljsbuild "1.1.4" :exclude [org.clojure/clojurescript]]
             [lein-figwheel "0.5.7"]
-            #_[lein-sassi "0.1.0"]]
+            [lein-sassy "1.0.7"]]
 
   :source-paths ["src/clj"]
   :target-path "target/%s/"
@@ -66,9 +66,8 @@
                             :optimizations :advanced
                             :pretty-print  false}}]}
 
-  :sass {:exec "C:/Ruby23-x64/bin/sass.bat"
-         :input "src/sass/style.scss"
-         :output "resources/public/css/style.css"}
+  :sass {:src "src/sass"
+         :dst "resources/public/css"}
 
   :figwheel {:server-port 3449
              :css-dirs    ["resources/public/css"]}

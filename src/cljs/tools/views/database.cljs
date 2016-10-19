@@ -55,6 +55,38 @@
                                  :ids   @ids}])}
           "Sync"]]]])))
 
+(defn update-data []
+  (rf/dispatch [:ajax/settings-get-database])
+  (let [db-id (ra/atom "")
+        dbs (rf/subscribe [:data/settings-databases])
+        get-table (fn [id] (rf/dispatch [:ajax/database-tables id]))
+        tables (rf/subscribe [:data/database-tables])
+        get-fields (fn [name] (rf/dispatch [:ajax/database-table-fields @db-id name]))]
+    (fn []
+      [:div.update-data
+       [:h2 "Update data"]
+       [:div
+        [:span "database: "]
+        [:select {:on-change (fn [e]
+                               (let [id (-> e .-target .-value)]
+                                 (when (not (= id ""))
+                                   (get-table id)
+                                   (reset! db-id id))))}
+         [:option {:value ""} " -- "]
+         (for [{:keys [id name host dbname]} @dbs]
+           ^{:key id} [:option {:value id} (str name " - " host "/" dbname)])]]
+       [:div.top-5
+        [:span "table: "]
+        [:select {:on-change (fn [e]
+                               (let [name (-> e .-target .-value)]
+                                 (when (not (= name ""))
+                                   (get-fields name))))}
+         [:option {:values ""} " -- "]
+         (for [[idx table] (map-indexed vector @tables)]
+           ^{:key idx} [:option {:value table} table])]]
+       [:div.top-5
+        [:h3 "Where"]]])))
+
 (defn layout [child]
   [:div.database [child]])
 

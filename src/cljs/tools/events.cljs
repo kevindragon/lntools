@@ -306,6 +306,22 @@
         (assoc-in [:data :database :tables] v))))
 
 (rf/reg-event-fx
+  :ajax/database-table-fields
+  (fn [{db :db} [_ db-id name]]
+    {:db (assoc db :loading? true)
+     :http-xhrio (ajax-get {:uri "/database/table-fields"
+                            :params {:dbId db-id
+                                     :name name}
+                            :on-success [:update-database-table-fields]})}))
+
+(rf/reg-event-db
+  :update-database-table-fields
+  (fn [db [_ v]]
+    (-> db
+        (assoc :loading? false)
+        (assoc-in [:data :database :table-fields]))))
+
+(rf/reg-event-fx
   :ajax/database-sync-data
   (fn [{db :db} [_ params]]
     {:db (assoc db :loading? true)
