@@ -8,7 +8,9 @@
    :migrations (jdbc/load-resources "migrations")})
 
 (def proxy-setting
-  (condp = e/environment
-    :dev {:connection-manager
-          (conn-mgr/make-socks-proxied-conn-manager "127.0.0.1" 7070)}
-    nil))
+  (merge
+    {:throw-exceptions false}
+    (condp = e/environment
+      :dev {:connection-manager
+            (conn-mgr/make-socks-proxied-conn-manager "127.0.0.1" 7070)}
+      nil)))

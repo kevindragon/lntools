@@ -64,6 +64,7 @@
    :settings|data-gap|add [settings/settings settings/add-data-gap]
    :database|sync         [database/layout database/sync]
    :database|update-data  [database/layout database/update-data]
+   :database|duplicated-key  [database/layout database/duplicated-key]
    :hyperlink|status      [hyperlink/layout hyperlink/status]
    :hyperlink|prepare     [hyperlink/layout hyperlink/prepare]
    :memcache|clear        [memcache/layout memcache/clear]
@@ -78,6 +79,7 @@
 (defn layout []
   (let [{:keys [handler]} (deref (rf/subscribe [:route]))
         loading? (deref (rf/subscribe [:loading?]))]
+    (println "handler" handler)
     [:div.container
      [navigation]
      [:div.playground

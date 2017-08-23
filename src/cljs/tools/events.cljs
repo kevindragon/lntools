@@ -260,11 +260,11 @@
         (assoc-in [:data :settings :databases] v))))
 
 (rf/reg-event-fx
-  :ajax/settings-get-database
-  (fn [{db :db} _]
-    {:db         (assoc db :loading? true)
-     :http-xhrio (ajax-get {:uri             "/settings/databases"
-                            :on-success      [:update-settings-databases]})}))
+ :ajax/settings-get-database
+ (fn [{db :db} _]
+   {:db         (assoc db :loading? true)
+    :http-xhrio (ajax-get {:uri "/settings/databases"
+                           :on-success [:update-settings-databases]})}))
 
 (rf/reg-event-fx
   :ajax/settings-del-database
@@ -315,9 +315,9 @@
                             :on-success [:update-database-table-fields]})}))
 
 (rf/reg-event-db
-  :update-database-table-fields
+ :update-database-table-fields
   (fn [db [_ v]]
-    (-> db
+ (-> db
         (assoc :loading? false)
         (assoc-in [:data :database :table-fields]))))
 

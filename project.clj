@@ -67,7 +67,7 @@
                             :pretty-print  false}}]}
 
   :sass {:src "src/sass"
-         :dst "resources/public/css"}
+         :dst "resources/public/css/"}
 
   :figwheel {:server-port 3449
              :css-dirs    ["resources/public/css"]}

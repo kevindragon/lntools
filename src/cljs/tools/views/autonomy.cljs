@@ -57,16 +57,17 @@
             ^{:key rid}
             [table {:caption [:h2 name]
                     :head    ["id" "host" "aciport" "status" "weight" ""]
-                    :body    (map (fn [engine]
-                                    (vector id
-                                            (:host engine)
-                                            (:aciport engine)
-                                            (:status engine)
-                                            (:weight engine)
-                                            [:div
-                                             [:button {:on-click #(change-status id (:id engine) "down")} "Down"]
-                                             [:button {:on-click #(change-status id (:id engine) "up")} "Up"]]))
-                                  engines)}])])})))
+                    :body    (map-indexed
+                               (fn [no engine]
+                                 (vector (+ 1 no)
+                                   (:host engine)
+                                   (:aciport engine)
+                                   (:status engine)
+                                   (:weight engine)
+                                   [:div
+                                    [:button {:on-click #(change-status id (:id engine) "down")} "Down"]
+                                    [:button {:on-click #(change-status id (:id engine) "up")} "Up"]]))
+                               engines)}])])})))
 
 (defn data-gap []
   (rf/dispatch [:ajax/settings-get-data-gap])
@@ -93,10 +94,10 @@
         [:input {:on-change #(reset! to (-> % .-target .-value))}]]
        [:p
         [:button {:on-click #(rf/dispatch
-                              [:ajax/autonomy-calc-data-gap
-                               {:dataGapId @id
-                                :from      @from
-                                :to        @to}])} "Calculate"]]
+                               [:ajax/autonomy-calc-data-gap
+                                {:dataGapId @id
+                                 :from      @from
+                                 :to        @to}])} "Calculate"]]
        [:div.top-10
         [:h3 "Need fetch"]
         [:div (clojure.string/join "," (:need_fetch @gaps))]

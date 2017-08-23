@@ -5,10 +5,17 @@
             [tools.help :as help])
   (:gen-class))
 
+(def server (atom nil))
+
 (defn start-server
   ([] (start-server false))
-  ([join] (run-jetty handles {:port 3000
-                              :join? join})))
+  ([join] (reset! server
+                  (run-jetty handles
+                             {:port 3000
+                              :join? join}))))
+
+(defn stop-server []
+  (.stop @server))
 
 (defn -main [& args]
   (cond

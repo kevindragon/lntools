@@ -1,0 +1,7 @@
+.autonomy .dih table.table {
+  float: left;
+  margin-left: 5px; }
+  .autonomy .dih table.table:nth-child(1) {
+    margin-left: 0; }
+.autonomy .data-gap .control .row {
+  padding: 10px 0; }

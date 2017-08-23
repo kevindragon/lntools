@@ -1,0 +1,6 @@
+.hyperlink .status-list {
+  display: flex; }
+  .hyperlink .status-list .column {
+    margin-right: 15px; }
+    .hyperlink .status-list .column:last-child {
+      margin-right: 0; }

@@ -151,7 +151,7 @@ table.table {
 .container {
   display: flex; }
   .container .nav {
-    flex: 0 120px;
+    flex: 0 160px;
     line-height: 1.5em;
     padding: 10px;
     background-color: #efefef; }
@@ -179,5 +179,3 @@ table.table {
     margin-left: 0; }
 .autonomy .data-gap .control .row {
   padding: 10px 0; }
-
-/*# sourceMappingURL=style.css.map */

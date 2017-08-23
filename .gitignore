@@ -10,3 +10,4 @@ node_modules
 .sass-cache
 resources/public/js/out
 .lein-env
+.cljs_rhino_repl

@@ -28,12 +28,14 @@
                  :children [{:name "Sync"
                              :href "#/database/sync"}
                             {:name "Update data"
-                             :href "#/database/update-data"}]}
+                             :href "#/database/update-data"}
+                            {:name "Duplicated key"
+                             :href "#/database/duplicated-key"}]}
                 {:name     "Autonomy"
                  :hide?    true
-                 :children [{:name "Dih"
+                 :children [{:name "Dih status"
                              :href "#/autonomy/dih"}
-                            {:name "Dah"
+                            {:name "Dah status"
                              :href "#/autonomy/dah"}
                             {:name "Data gap"
                              :href "#/autonomy/data-gap"}]}
