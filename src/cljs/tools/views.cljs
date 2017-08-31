@@ -79,7 +79,6 @@
 (defn layout []
   (let [{:keys [handler]} (deref (rf/subscribe [:route]))
         loading? (deref (rf/subscribe [:loading?]))]
-    (println "handler" handler)
     [:div.container
      [navigation]
      [:div.playground

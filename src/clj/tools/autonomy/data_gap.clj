@@ -14,12 +14,8 @@
 
 (def ^:const get-sql
   "select
-   data_gap.*,
-   dah.host as dah_host,
-   dah.port as dah_port
+   data_gap.*
    from data_gap
-   left join dah on data_gap.dah_id = dah.id
-   left join databases on data_gap.database_id = databases.id
    where data_gap.id = ?")
 
 (defn get-ids [db sql from to]
@@ -28,7 +24,7 @@
       :display
       (map
         #(assoc % :display (if (or (= true (:display %))
-                                   (= 1 (:display %)))
+                                 (= 1 (:display %)))
                              :show
                              :hide))
         data-from-db))))
@@ -74,19 +70,20 @@
           autn-ids (get-id-list (:body x))]
       autn-ids)))
 
-(defn calc [{:keys [dataGapId from to]}]
-  (let [row (first (j/query db/db [get-sql dataGapId]))
-        mysql-db (db/get-db (:database_id row))
-        {:keys [show hide]} (get-ids mysql-db (:sql_statement row) from to)]
+(defn calc [{:keys [gap_id db_id dah_id from to] :as params}]
+  (let [gap (first (j/query db/db [get-sql gap_id]))
+        mysql-db (db/get-db db_id)
+        dah (db/dah-by-id dah_id)
+        {:keys [show hide]} (get-ids mysql-db (:sql_statement gap) from to)]
     {:status 200
      :body {:need_fetch  (query-need-fetch
-                           (:dah_host row)
-                           (:dah_port row)
-                           (:autn_db_name row)
+                           (:host dah)
+                           (:port dah)
+                           (:autn_db_name gap)
                            (map :id show))
             :need_delete (query-need-delete
-                           (:dah_host row)
-                           (:dah_port row)
-                           (:autn_db_name row)
+                           (:host dah)
+                           (:port dah)
+                           (:autn_db_name gap)
                            (map :id hide))}}))
 

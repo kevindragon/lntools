@@ -222,23 +222,22 @@
   (fn []
     (let [gaps (deref (rf/subscribe [:data/settings-data-gaps]))
           del (fn [id] (rf/dispatch [:ajax/settings-del-data-gap id]))
-          rows (map (fn [row]
-                      (vector
-                        (:id row)
-                        (:name row)
-                        (:database_name row)
-                        (str (:dah_name row) "/" (:dah_host row) ":" (:dah_port row))
-                        (:autn_db_name row)
-                        (:sql_statement row)
-                        [:button {:on-click #(del (:id row))} "Delete"]))
-                    gaps)]
+          rows (map-indexed
+                 (fn [no row]
+                   (vector
+                     (+ 1 no)
+                     (:name row)
+                     (:autn_db_name row)
+                     (:sql_statement row)
+                     [:button {:on-click #(del (:id row))}
+                      "Delete"]))
+                 gaps)] 
       [:div.data-gap
        [:h2 "Data gap"]
-       [table {:head ["id" "name" "database" "dah" "autonomy db" "sql statement" ""]
+       [table {:head ["id" "name" "autonomy db" "sql statement" ""]
                :body rows}]
        [:p
-        [:a {:href "#/settings/data-gap/add"} "Add data gap"]]]))
-  )
+        [:a {:href "#/settings/data-gap/add"} "Add data gap"]]])))
 
 (defn add-data-gap []
   (rf/dispatch [:ajax/settings-get-dah])
@@ -253,40 +252,29 @@
     (fn []
       [:div.data-gap
        [:h2 "Add data gap"]
-       [table {:body [["name" [:input {:type "text"
-                                       :on-change #(reset! name (-> % .-target .-value))
-                                       :value @name}]]
-                      ["database" [:select {:on-change (fn [e]
-                                                         (let [v (-> e .-target .-value)]
-                                                           (when (not (= v ""))
-                                                             (reset! database v))))}
-                                   [:option {:values ""} " -- "]
-                                   (for [{:keys [id name host]} db-list]
-                                     ^{:key id} [:option {:value id} (str name "/" host)])]]
-                      ["dah" [:select {:on-change (fn [e]
-                                                    (let [v (-> e .-target .-value)]
-                                                      (when (not (= v ""))
-                                                        (reset! dah v))))}
-                              [:option {:values ""} " -- "]
-                              (for [{:keys [id name host port]} dah-list]
-                                ^{:key id} [:option {:value id} (str name "/" host ":" port)])]]
-                      ["autonomy db" [:input {:type "text"
-                                              :on-change #(reset! autn-db (-> % .-target .-value))
-                                              :value @autn-db}]]
+       [table {:body [["name"
+                       [:input {:type "text"
+                                :on-change
+                                #(reset! name (-> % .-target .-value))
+                                :value @name}]]
+                      ["autonomy db"
+                       [:input {:type "text"
+                                :on-change
+                                #(reset! autn-db (-> % .-target .-value))
+                                :value @autn-db}]]
                       ["sql" [:div
-                              [:textarea {:cols      60
-                                          :rows      10
-                                          :on-change #(reset! sql (-> % .-target .-value))
-                                          :value     @sql}]
+                              [:textarea
+                               {:cols      60
+                                :rows      10
+                                :on-change #(reset! sql (-> % .-target .-value))
+                                :value     @sql}]
                               [:div.tips "eg.: select id, display from table where datetime_field >= ? and datetime_field <= ?"]]]]}]
        [:p
         [:button {:on-click #(rf/dispatch
-                              [:ajax/settings-add-data-gap
-                               {:name         @name
-                                :dbId         @database
-                                :dahId        @dah
-                                :autnDBName   @autn-db
-                                :sqlStatement @sql}])}
+                               [:ajax/settings-add-data-gap
+                                {:name         @name
+                                 :autnDBName   @autn-db
+                                 :sqlStatement @sql}])}
          "Add"]
         [:a.left-10 {:href "#/settings/data-gap"} "Back"]]])))
 

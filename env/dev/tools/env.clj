@@ -1,6 +1,7 @@
 (ns tools.env)
 
-(def database {:subprotocol "sqlite"
+(def database {:classname   "org.sqlite.JDBC"
+               :subprotocol "sqlite"
                :subname "dev.db"})
 
 (def environment :dev)

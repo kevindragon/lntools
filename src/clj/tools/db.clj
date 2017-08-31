@@ -19,6 +19,12 @@
     db
     ["select * from databases where id = ?" id]))
 
+(defn dah-by-id [id]
+  (first
+    (j/query
+      db
+      ["select * from dah where id = ?" id])))
+
 (defn memcache-by-id [id]
   (first
     (j/query

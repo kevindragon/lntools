@@ -1,5 +1,6 @@
 (ns tools.views.autonomy
-  (:require [re-frame.core :as rf]
+  (:require [clojure.string :as str]
+            [re-frame.core :as rf]
             [reagent.core :as ra]
             [tools.util :refer [table]]))
 
@@ -65,27 +66,54 @@
                                    (:status engine)
                                    (:weight engine)
                                    [:div
-                                    [:button {:on-click #(change-status id (:id engine) "down")} "Down"]
-                                    [:button {:on-click #(change-status id (:id engine) "up")} "Up"]]))
+                                    [:button {:on-click
+                                              #(change-status
+                                                 id
+                                                 (:id engine) "down")}
+                                     "Down"]
+                                    [:button {:on-click
+                                              #(change-status
+                                                 id
+                                                 (:id engine) "up")}
+                                     "Up"]]))
                                engines)}])])})))
 
 (defn data-gap []
+  (rf/dispatch [:ajax/settings-get-dah])
   (rf/dispatch [:ajax/settings-get-data-gap])
-  (let [data-gaps (rf/subscribe [:data/settings-data-gaps])
-        gaps (rf/subscribe [:data/autonomy-data-gaps])
-        id (ra/atom "")
-        from (ra/atom "")
-        to (ra/atom "")]
+  (rf/dispatch [:ajax/settings-get-database])
+  (let [dbs       (rf/subscribe [:data/settings-databases])
+        data-gaps (rf/subscribe [:data/settings-data-gaps])
+        autns     (rf/subscribe [:data/settings-dahs])
+        gaps      (rf/subscribe [:data/autonomy-data-gaps])
+        gap-id    (ra/atom "")
+        db-id     (ra/atom "")
+        dah-id    (ra/atom "")
+        from      (ra/atom "")
+        to        (ra/atom "")]
     (fn []
       [:div.data-gap
        [:h2 "Data gap"]
        [:div
-        [:div "Database"]
-        [:select {:on-change #(reset! id (-> % .-target .-value))}
+        [:div "Gap"]
+        [:select {:on-change #(reset! gap-id (-> % .-target .-value))}
          [:option {:value ""} " -- "]
-         (for [[idx {:keys [id name autn_db_name dah_host dah_port]}]
+         (for [[idx {:keys [id name autn_db_name]}]
                (map-indexed vector @data-gaps)]
-           ^{:key idx} [:option {:value id} (str name " - " dah_host ":" dah_port "/" autn_db_name)])]]
+           ^{:key idx} [:option {:value id} (str name "/" autn_db_name)])]]
+       [:div
+        [:div "Database"]
+        [:select {:on-change #(reset! db-id (-> % .-target .-value))}
+         [:option {:value ""} " -- "]
+         (for [[idx {:keys [id name host dbname]}]
+               (map-indexed vector @dbs)]
+           ^{:key idx} [:option {:value id} (str name " " host "/" dbname)])]]
+       [:div.top-5
+        [:div "Dah"]
+        [:select {:on-change #(reset! dah-id (-> % .-target .-value))}
+         [:option {:value ""} " -- "]
+         (for [[idx {:keys [id name host port]}] (map-indexed vector @autns)]
+           ^{:key idx} [:option {:value id} (str name " " host ":" port)])]]
        [:div.top-5
         [:div "date from"]
         [:input {:on-change #(reset! from (-> % .-target .-value))}]]
@@ -95,15 +123,17 @@
        [:p
         [:button {:on-click #(rf/dispatch
                                [:ajax/autonomy-calc-data-gap
-                                {:dataGapId @id
-                                 :from      @from
-                                 :to        @to}])} "Calculate"]]
+                                {"gap_id" @gap-id
+                                 "db_id"  @db-id
+                                 "dah_id" @dah-id
+                                 "from"   @from
+                                 "to"     @to}])} "Calculate"]]
        [:div.top-10
         [:h3 "Need fetch"]
-        [:div (clojure.string/join "," (:need_fetch @gaps))]
+        [:div (str/join "," (:need_fetch @gaps))]
         [:hr]
         [:h3 "Need delete"]
-        [:div (clojure.string/join "," (:need_delete @gaps))]]])))
+        [:div (str/join "," (:need_delete @gaps))]]])))
 
 (defn layout [child]
   [:div.autonomy [child]])
